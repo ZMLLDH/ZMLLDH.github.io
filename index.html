@@ -170,6 +170,69 @@
     
     
     <article
+  id="post-hexo博客主题更换"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/07/04/hexo%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2/"
+    >hexo</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/07/04/hexo%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2/" class="article-date">
+  <time datetime="2022-07-04T08:25:02.472Z" itemprop="datePublished">2022-07-04</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h1 id="hexo博客主题更换"><a href="#hexo博客主题更换" class="headerlink" title="hexo博客主题更换"></a>hexo博客主题更换</h1><p>第一种</p>
+<ol>
+<li><p> 先下载好压缩包</p>
+</li>
+<li><p> 将压缩包里面的文件夹复制到themes中，修改名字</p>
+</li>
+<li><p> 将此名字复制，在hexo文件夹的_config.yml中的theme属性修改为该名字</p>
+</li>
+<li><p> hexo clean&amp;&amp;hexo g&amp;&amp;hexo d</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//查看hexo版本</span><br><span class="line"> npm ls --depth 0</span><br></pre></td></tr></table></figure>
+
+<p>报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">fatal: unable to access &#x27;https://github.com/xxx/autowrite.git/&#x27;: </span><br><span class="line">OpenSSL SSL_read: Connection was reset, errno 10054</span><br><span class="line"></span><br><span class="line">或者</span><br><span class="line"></span><br><span class="line">fatal: unable to access &#x27;https://github.com/xxx/autowrite.git/&#x27;:</span><br><span class="line">Failed to connect to github.com port 443: Timed out</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">因为git在拉取或者提交项目时，中间会有git的http和https代理，但是我们本地环境本身就有SSL协议了，</span><br><span class="line">所以取消git的https代理即可，不行再取消http的代理。</span><br><span class="line"></span><br><span class="line">解决方法：</span><br><span class="line">//取消http代理</span><br><span class="line">git config --global --unset http.proxy</span><br><span class="line">//取消https代理 </span><br><span class="line">git config --global --unset https.proxy</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//hexo部署中出现的错误</span><br><span class="line">fatal: unable to access &#x27;https://github.com/a956551943/a956551943.github.io/&#x27;: Encountered end of file</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (/usr/local/src/hexo/hanyubolg/node_modules/hexo-util/lib/spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:376:20)</span><br><span class="line">      at Process.ChildProcess._ handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//解决方法</span><br><span class="line">//进入站点根目录</span><br><span class="line">cd /usr/local/src/hexo/hanyubolg/</span><br><span class="line"></span><br><span class="line">//删除git提交内容文件夹</span><br><span class="line">rm -rf .deploy_git/</span><br><span class="line"></span><br><span class="line">//执行</span><br><span class="line">git config --global core.autocrlf false</span><br><span class="line"></span><br><span class="line">//最后</span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+    </footer>
+  </div>
+
+   
+    
+</article>
+
+    
+    <article
   id="post-a"
   class="article article-type-post"
   itemscope
