@@ -6,13 +6,34 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="description" content="基础语法&lt; script&gt;标签如果在HTML页面里面使用JavaScript，需要把代码用这个标签包含起来 123&lt;script&gt;  alert(&quot;hello&quot;);  &lt;&#x2F;script&gt; 可以在HTML文档里面放入不限数量的脚本，可以存在于head与body中，也可以放在页面底部如果要引入外面的javascript文件，需要使用src属性 1">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2024/03/28/JavaScriptStudy/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="基础语法&lt; script&gt;标签如果在HTML页面里面使用JavaScript，需要把代码用这个标签包含起来 123&lt;script&gt;  alert(&quot;hello&quot;);  &lt;&#x2F;script&gt; 可以在HTML文档里面放入不限数量的脚本，可以存在于head与body中，也可以放在页面底部如果要引入外面的javascript文件，需要使用src属性 1">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688948264263-b1077e5f-df17-471a-ab89-aae2da095531.png#averageHue=%23dcdad8&clientId=ua2b67d39-2a76-4&from=paste&height=160&id=u5ff6d607&originHeight=216&originWidth=822&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=22845&status=done&style=none&taskId=u4b3098f2-90b9-4821-9eac-6c2884e1ab3&title=&width=608.8889319023508">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688971386488-307777ec-6f19-4a49-8995-4d35d526356b.png#averageHue=%23f5f3f1&clientId=ua2b67d39-2a76-4&from=paste&height=478&id=ua09ec13a&originHeight=645&originWidth=336&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=22891&status=done&style=none&taskId=u512932ea-e1e0-4f30-9472-9f044091f55&title=&width=248.88890647103392">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688913136669-963ea38e-6bc4-4c9c-8c65-179add2b47dc.png#averageHue=%23f0eeeb&clientId=ua2b67d39-2a76-4&from=paste&height=521&id=u8dcb6a8a&originHeight=703&originWidth=636&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=63917&status=done&style=none&taskId=u2d2b4935-2645-428d-9955-e25ac9fdf21&title=&width=471.1111443915999">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688945972005-7e692c6b-c176-475f-907e-1be9d81b30e0.png#averageHue=%23f1f0ee&clientId=ua2b67d39-2a76-4&from=paste&height=467&id=ucddffaf4&originHeight=631&originWidth=710&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=33813&status=done&style=none&taskId=u9874befb-d821-41ce-9f47-3869d28cd8f&title=&width=525.9259630786728">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688945997943-60b2f94a-5a44-4890-aa5f-6b5e34206c03.png#averageHue=%23edecea&clientId=ua2b67d39-2a76-4&from=paste&height=323&id=ue06fafb3&originHeight=436&originWidth=695&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=20373&status=done&style=none&taskId=ud82387a9-f5ea-482b-a6af-39b4c9a6ce9&title=&width=514.8148511826446">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688946167817-10f24df5-c193-491d-8a79-a42522ad281f.png#averageHue=%23f0efec&clientId=ua2b67d39-2a76-4&from=paste&height=564&id=u3b371ccd&originHeight=761&originWidth=696&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=40326&status=done&style=none&taskId=u46b106f5-7ae0-44ce-8394-22b906afdd6&title=&width=515.5555919757131">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688946211443-add771cb-eb7a-45e5-95f3-829ff19c87d4.png#averageHue=%23dfdedc&clientId=ua2b67d39-2a76-4&from=paste&height=154&id=u5e503c4f&originHeight=208&originWidth=827&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=16963&status=done&style=none&taskId=u66512cef-2cc2-4457-9e9f-47698d38e1e&title=&width=612.5926358676936">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688972465783-6dae2218-2a1f-4d4f-8ad0-973dbf097f96.png#averageHue=%23dfdedc&clientId=ua2b67d39-2a76-4&from=paste&height=159&id=uac6ce0bf&originHeight=214&originWidth=825&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=15457&status=done&style=none&taskId=u00ef81d4-0480-468a-b5f0-6c507dfab10&title=&width=611.1111542815564">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688972510913-cd532e14-ba79-4f47-9b0c-1ae6a2aa67fc.png#averageHue=%23e6e5e3&clientId=ua2b67d39-2a76-4&from=paste&height=253&id=u78f6aa66&originHeight=342&originWidth=835&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=21402&status=done&style=none&taskId=u3f6b1cba-6f5b-4b2e-b880-9a6ff5ccda7&title=&width=618.518562212242">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688972520704-fe622e39-bf28-457d-8a6d-19cbce04fcf1.png#averageHue=%23e4e3e2&clientId=ua2b67d39-2a76-4&from=paste&height=216&id=uc15366b7&originHeight=291&originWidth=830&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=16270&status=done&style=none&taskId=u2389b00d-7cc2-48d3-a9f0-33c69f8c0af&title=&width=614.8148582468992">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688980513412-d8a764cd-41bc-4457-8d81-d6b9fa4988e2.png#averageHue=%23e8e6e2&clientId=ua2b67d39-2a76-4&from=paste&height=383&id=u4381211b&originHeight=517&originWidth=829&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=52496&status=done&style=none&taskId=u8287e003-f7f5-4a62-a362-9db2f4da910&title=&width=614.0741174538307">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688980565180-a989d33a-9834-4507-a12a-4eebadfdf4d7.png#averageHue=%23e0dedd&clientId=ua2b67d39-2a76-4&from=paste&height=179&id=u795ca6c3&originHeight=241&originWidth=839&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=21283&status=done&style=none&taskId=ufae03270-1308-4f9c-b9a7-b35cb52e7a0&title=&width=621.4815253845162">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688980590548-8ca15fe0-0f1c-4131-b791-d955768eb697.png#averageHue=%23ebe9e6&clientId=ua2b67d39-2a76-4&from=paste&height=534&id=u9050e4d0&originHeight=721&originWidth=818&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=83823&status=done&style=none&taskId=u6df15e6d-bf11-43ae-963c-1e74f5bf017&title=&width=605.9259687300766">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1689067777071-8283408a-9992-49c3-94ca-51f5481d2670.png#averageHue=%23d4d3d0&clientId=ua2b67d39-2a76-4&from=paste&height=131&id=uc41a6910&originHeight=177&originWidth=839&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=23635&status=done&style=none&taskId=ue15453d6-cfc7-4281-b94d-e3d8b8e44c2&title=&width=621.4815253845162">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1689142447053-adf37118-c080-46dd-b20d-71c875a02338.png#averageHue=%231f1c1a&clientId=u5ff299ca-52b6-4&from=paste&height=50&id=u8c42869a&originHeight=68&originWidth=482&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=5411&status=done&style=none&taskId=u25af9081-1fc5-4f42-b1c2-88b3853c6d8&title=&width=357.03706225904267">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1689667645010-e55bca3e-c629-45b6-b068-4e403e1f7f69.png#averageHue=%23f3f3f3&clientId=ua7a5457e-cf5b-4&from=paste&height=292&id=u889b0b65&originHeight=394&originWidth=766&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=14834&status=done&style=none&taskId=ufe8f47f5-3f0b-4585-8475-35a11a3eb59&title=&width=567.4074474905118">
+<meta property="article:published_time" content="2024-03-28T11:33:39.944Z">
+<meta property="article:modified_time" content="2024-03-19T08:06:35.429Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1688948264263-b1077e5f-df17-471a-ab89-aae2da095531.png#averageHue=%23dcdad8&clientId=ua2b67d39-2a76-4&from=paste&height=160&id=u5ff6d607&originHeight=216&originWidth=822&originalType=binary&ratio=1.3499999046325684&rotation=0&showTitle=false&size=22845&status=done&style=none&taskId=u4b3098f2-90b9-4821-9eac-6c2884e1ab3&title=&width=608.8889319023508">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -67,9 +88,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-JavaScriptStudy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-JavaScriptStudy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2024/03/28/JavaScriptStudy/" class="article-date">
   <time class="dt-published" datetime="2024-03-28T11:33:39.944Z" itemprop="datePublished">2024-03-28</time>
@@ -337,11 +356,9 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
   
+</article>
 
 
 </section>
