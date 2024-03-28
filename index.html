@@ -69,9 +69,92 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-JavaScriptStudy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-linux/按时归档文件" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2024/03/28/JavaScriptStudy/" class="article-date">
+    <a href="/2024/03/28/linux/%E6%8C%89%E6%97%B6%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6/" class="article-date">
+  <time class="dt-published" datetime="2024-03-28T14:22:53.254Z" itemprop="datePublished">2024-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">判断输入参数个数</span></span><br><span class="line">if [ $# -ne 1 ]</span><br><span class="line">then</span><br><span class="line">  echo &quot;The number of parameters is wrong, one parameter should be entered&quot;</span><br><span class="line">  exit</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从参数中获取目录名称</span></span><br><span class="line">if [ -d $1 ]</span><br><span class="line">then</span><br><span class="line">  echo</span><br><span class="line">else</span><br><span class="line">  echo &quot;it does not exist&quot;</span><br><span class="line">  exit</span><br><span class="line">fi</span><br><span class="line">DIR_NAME=$(basename $1)</span><br><span class="line">DIR_PATH=$(cd $(dirname $1);pwd)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取当前日期</span></span><br><span class="line"></span><br><span class="line">DIR_PATH=$(cd $(dirname $1);pwd)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取当前日期</span></span><br><span class="line">DATE=$(date +%y%m%d)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义生成的归档文件名称</span></span><br><span class="line">FILE=archive_$&#123;DIR_NAME&#125;_$DATE.tar.gz</span><br><span class="line">DEST=/root/archive/$FILE</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开始归档</span></span><br><span class="line">tar -czf $DEST $DIR_PATH/$DIR_NAME</span><br><span class="line"></span><br><span class="line">if [ $? -eq 0 ]</span><br><span class="line">then</span><br><span class="line">  echo successful</span><br><span class="line">else</span><br><span class="line">  echo error!</span><br><span class="line">fi</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+<p>然后就是添加权限，创建archive文件夹，通过crontab设置定时任务</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/28/linux/%E6%8C%89%E6%97%B6%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6/" data-id="clubbrek80002946zdcee6260" data-title="" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-linux/发送消息" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/28/linux/%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF/" class="article-date">
+  <time class="dt-published" datetime="2024-03-28T14:22:53.239Z" itemprop="datePublished">2024-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>可以使用Linux自带的mesg和write工具，向其他用户发送消息<br>需求：实现向一个用户快速发送消息的脚本，输入用户名作为第一个参数，后面直接跟着要发送的信息。脚本需要检测用户是否登录在系统中，是否打开消息功能，以及发送消息是否为空<br>最后结果如下<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697188432391-e2769a86-ed21-4f2c-918a-c49c1d40aeb5.png#averageHue=%23e5e5e2&clientId=u99dc60eb-8df0-4&from=paste&height=720&id=u243e1053&originHeight=1080&originWidth=1920&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=409220&status=done&style=none&taskId=u8184ef89-e40c-45e0-b9a5-a24f314cc42&title=&width=1280" alt="image.png"><br>依据需求，我们很简单的可以总结出以下流程</p>
+<ol>
+<li>确认参数，第一个为用户，后面的为要发送的信息<ol>
+<li>检查用户参数是否为空</li>
+<li>检查消息参数是否为空</li>
+</ol>
+</li>
+<li>检查用户是否开启消息接受</li>
+<li>利用write把消息发送到目标用户</li>
+</ol>
+<p>我们先来看看一些关键的操作</p>
+<ol>
+<li>who -T		查看谁在线，谁打开的消息<ol>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697188715567-d3a11cb6-ff68-4df2-bd84-90e7990b0b22.png#averageHue=%23fefefe&clientId=u99dc60eb-8df0-4&from=paste&height=53&id=ubff1dc8f&originHeight=80&originWidth=426&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=7766&status=done&style=none&taskId=uc86b6b24-c1a4-473b-ad0d-47878d43dec&title=&width=284" alt="image.png"></li>
+<li>第一列用户名，第二列是否打开消息，+为打开</li>
+<li>第三列就是使用的pts，我们发送消息需要用到它</li>
+</ol>
+</li>
+<li>write<ol>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697188848038-ecb5cd7a-a1e3-41c4-8bec-8805b0685ad8.png#averageHue=%23fefefe&clientId=u99dc60eb-8df0-4&from=paste&height=109&id=u7a5407f6&originHeight=164&originWidth=523&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=14406&status=done&style=none&taskId=u7eef751c-cbcb-4ea8-b0f5-138556486aa&title=&width=348.6666666666667" alt="image.png"></li>
+<li>由此测试一下，发现没有问题，找到用户名和pts，echo消息灌进去即可</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697188926898-86bfca01-bb1f-479b-82b8-17ab9ff8e002.png#averageHue=%23fcfcfb&clientId=u99dc60eb-8df0-4&from=paste&height=352&id=udcac165f&originHeight=528&originWidth=1559&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=130168&status=done&style=none&taskId=u74f1c0ec-ee5c-45ce-9e23-b14e70c4122&title=&width=1039.3333333333333" alt="image.png"><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看用户是否登陆</span></span><br><span class="line">login_user=$(who | grep -i -m 1 $1 | awk &#x27;&#123;print$1&#125;&#x27;)</span><br><span class="line">echo he=$login_user</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-z表示判断字符串是否为空</span></span><br><span class="line">if [ -z $login_user ]</span><br><span class="line">then</span><br><span class="line">  echo &quot;not online&quot;</span><br><span class="line">  echo exit</span><br><span class="line">  exit</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">判断用户是否打开了消息</span></span><br><span class="line">open_msg=$(who -T | awk -F &quot; &quot; &#x27;/pts\/1/&#123;print $2&#125;&#x27;)</span><br><span class="line">echo $open_msg</span><br><span class="line">if [ $open_msg != &#x27;+&#x27; ]</span><br><span class="line">then</span><br><span class="line">  echo &quot;he isn&#x27;t online&quot;</span><br><span class="line">  exit</span><br><span class="line">else</span><br><span class="line">  echo &quot;he is online&quot;</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看参数中是否有消息</span></span><br><span class="line">if [ -z $2 ]</span><br><span class="line">then</span><br><span class="line">  echo &quot;not msg&quot;</span><br><span class="line">  echo exit</span><br><span class="line">  exit</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">从参数中获取消息</span></span><br><span class="line">msg=$(echo $* | cut -d &quot; &quot; -f 2-)</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">echo</span> msg=<span class="variable">$msg</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">user_me=$(<span class="built_in">who</span> | grep -i -m 1 <span class="variable">$1</span> | awk <span class="string">&#x27;&#123;print$1 $2&#125;&#x27;</span>)</span></span><br><span class="line">user_me=$(who -T | awk -F &quot; &quot; &#x27;/pts\/1/&#123;print $1&quot; &quot;$3&#125;&#x27;)</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">echo</span> user_me=<span class="variable">$user_me</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="built_in">who</span> am i</span></span><br><span class="line">echo $msg | write $user_me</span><br><span class="line">echo $?</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/28/linux/%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF/" data-id="clubbrejz0000946zg7e78lo0" data-title="" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-JavaScript/JavaScriptStudy" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/28/JavaScript/JavaScriptStudy/" class="article-date">
   <time class="dt-published" datetime="2024-03-28T11:33:39.944Z" itemprop="datePublished">2024-03-28</time>
 </a>
     
@@ -330,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/03/28/JavaScriptStudy/" data-id="club6u4x10000zw6z9xlmcmse" data-title="" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      <a data-url="http://example.com/2024/03/28/JavaScript/JavaScriptStudy/" data-id="clubbrek60001946zh2zdaplc" data-title="" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
       
       
@@ -373,7 +456,15 @@
       <ul>
         
           <li>
-            <a href="/2024/03/28/JavaScriptStudy/">(no title)</a>
+            <a href="/2024/03/28/linux/%E6%8C%89%E6%97%B6%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/28/linux/%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/28/JavaScript/JavaScriptStudy/">(no title)</a>
           </li>
         
       </ul>
