@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Linux之shell编程 | 木子的学习博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="shell概述shell是一个命令行解释器，他接受应用程序&#x2F;用户命令，然后调用操作系统内核shell还是一个功能强大的编程语言，易编写易调试，灵活性强通过  cat  &#x2F;etc&#x2F;shells命令查看Linux提供的shell解释器 Shell脚本入门脚本格式以**#!&#x2F;bin&#x2F;bash**开头(指定解释器)shell脚本文件就是一个文本文件, 后缀">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux之shell编程">
+<meta property="og:url" content="http://example.com/2024/03/28/linux/Linux%E4%B9%8Bshell%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:site_name" content="木子的学习博客">
+<meta property="og:description" content="shell概述shell是一个命令行解释器，他接受应用程序&#x2F;用户命令，然后调用操作系统内核shell还是一个功能强大的编程语言，易编写易调试，灵活性强通过  cat  &#x2F;etc&#x2F;shells命令查看Linux提供的shell解释器 Shell脚本入门脚本格式以**#!&#x2F;bin&#x2F;bash**开头(指定解释器)shell脚本文件就是一个文本文件, 后缀">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697102074249-a4b1fbd3-c195-403b-905f-acb3806b2592.png#averageHue=%23fefefe&clientId=ufcce992e-f232-4&from=paste&height=105&id=u4cf9510d&originHeight=157&originWidth=394&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8378&status=done&style=none&taskId=ubd5859a6-44e5-4160-b4a0-236c7f9be0e&title=&width=262.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697102704598-45551d1f-fbdf-44fc-bbef-c4df47c9b75d.png#averageHue=%23fefefe&clientId=ufcce992e-f232-4&from=paste&height=134&id=ub4617a5c&originHeight=201&originWidth=403&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=16968&status=done&style=none&taskId=u419f298e-b57f-4193-89de-4bd2ce63974&title=&width=268.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697102981091-c3b1716e-b2fe-4393-a14b-a458587a50ae.png#averageHue=%23fefefe&clientId=ufcce992e-f232-4&from=paste&height=87&id=u6b9568c9&originHeight=130&originWidth=479&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=15450&status=done&style=none&taskId=u10b555b5-04d5-44f8-8339-6df4677aacb&title=&width=319.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697103163589-95374ec1-0f16-43b0-a9a3-0f206d7442ce.png#averageHue=%23fefefe&clientId=ufcce992e-f232-4&from=paste&height=151&id=ub521e8b1&originHeight=226&originWidth=470&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=29740&status=done&style=none&taskId=udff2437f-26f7-4ce0-a14e-13a1eeb4e9a&title=&width=313.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697116957602-6a67530f-4d35-4a42-b2fc-328dfbae3780.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=97&id=u3b896c2e&originHeight=146&originWidth=460&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=17462&status=done&style=none&taskId=u26796ca9-c371-4e30-bc67-271f22c5799&title=&width=306.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697114507435-6760af11-15ec-4192-8a8f-984ca24e3a05.png#averageHue=%23fefefe&clientId=ufcce992e-f232-4&from=paste&height=157&id=u597a3ce5&originHeight=235&originWidth=533&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=36669&status=done&style=none&taskId=ud3de8570-e9b9-459e-ac97-63d3c777643&title=&width=355.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697116156025-d94d9b53-aafc-41bc-829b-cef74048012d.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=17&id=udc22033f&originHeight=25&originWidth=406&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=1963&status=done&style=none&taskId=ub4068bb9-bd07-4cb6-a537-3faac300c3d&title=&width=270.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697115399801-e327968a-b355-4815-bfc1-a4972189a73e.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=84&id=u646daf3c&originHeight=126&originWidth=385&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=12209&status=done&style=none&taskId=u774101e1-666c-40ae-ba0d-5554210fbce&title=&width=256.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697116827610-cb081323-a70a-4354-8bc2-1616657f4e23.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=122&id=ub269c8e5&originHeight=183&originWidth=309&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=13602&status=done&style=none&taskId=u67503541-ac44-4bfe-b0ab-44d97752a60&title=&width=206">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697117611724-6dc1ccf9-8e7b-4062-aeb0-62465f9e4c23.png#averageHue=%23fcfcfc&clientId=ube56a924-337b-4&from=paste&height=173&id=u622e8b04&originHeight=260&originWidth=494&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=31996&status=done&style=none&taskId=u7b4bbd8b-1ab7-4c10-948f-f92b371c252&title=&width=329.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697124234717-337015b8-7283-416a-80ef-8fd69df6d49e.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=130&id=u5749475a&originHeight=195&originWidth=358&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=19093&status=done&style=none&taskId=ua2f6b988-3574-48b7-aef4-8b60895fccc&title=&width=238.66666666666666">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697159983867-eee4ff17-625c-4c14-8cd0-b5928d8e8360.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=26&id=ufb5c58a9&originHeight=39&originWidth=386&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=4063&status=done&style=none&taskId=u33c9d72e-a212-4cba-b464-bc5e7c0298c&title=&width=257.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697162762293-ff462c4a-8b71-4528-ac39-bcad1a42a9e1.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=96&id=u04ec8222&originHeight=144&originWidth=460&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=18439&status=done&style=none&taskId=ufdc24ed4-01f5-47c1-ac05-ca1b7a03a91&title=&width=306.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697163282753-44960425-03e1-4220-a710-336c5c48c63c.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=99&id=ub90eed6b&originHeight=148&originWidth=681&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=24250&status=done&style=none&taskId=u4108136e-9eca-46ae-aff5-8463639b58e&title=&width=454">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697164516758-e16baf44-10f8-40e3-8c0b-304e0e2a4424.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=119&id=ua7d9ceb5&originHeight=179&originWidth=1326&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=32344&status=done&style=none&taskId=u1a8d29d1-e737-445e-acd9-2bc273753ae&title=&width=884">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697164886291-c660e7a5-f80f-436c-9bd8-22edaa59f863.png#averageHue=%23fcfcfc&clientId=ube56a924-337b-4&from=paste&height=40&id=u0c9de02f&originHeight=60&originWidth=825&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8183&status=done&style=none&taskId=u96bfdae9-cc00-4fae-b86e-06b2e43f5e0&title=&width=550">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697165969206-8c473a63-ca64-45c8-92aa-7bb18fd34142.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=57&id=u306a1c0a&originHeight=85&originWidth=420&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=7538&status=done&style=none&taskId=u75825bff-b297-49ee-acb9-d8bcc7e3d27&title=&width=280">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697167427018-9d35295f-be62-4338-8031-7646f8a5e72e.png#averageHue=%23fefefe&clientId=uf981242d-c085-4&from=paste&height=279&id=u240c5eaf&originHeight=418&originWidth=487&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=60815&status=done&style=none&taskId=ub1764426-918b-4895-87c6-be022376690&title=&width=324.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697167831018-df49bf1c-9c08-4254-9125-8084e16deb09.png#averageHue=%23fefefe&clientId=uf981242d-c085-4&from=paste&height=97&id=u53351c8b&originHeight=145&originWidth=383&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8375&status=done&style=none&taskId=u5cd0bde5-76db-44eb-8d28-d910ef62de5&title=&width=255.33333333333334">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697168439145-b9d21346-332f-4ff7-a024-d8f6d3e13f3b.png#averageHue=%23fefefe&clientId=uf981242d-c085-4&from=paste&height=38&id=u2da6765e&originHeight=57&originWidth=336&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=4228&status=done&style=none&taskId=u68d24689-1786-4762-ae50-df5befed16f&title=&width=224">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697169279993-9d22de70-fefb-4a5a-afa8-f9cceaea8746.png#averageHue=%23fefefe&clientId=uf981242d-c085-4&from=paste&height=55&id=u90e3a618&originHeight=83&originWidth=392&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8675&status=done&style=none&taskId=u78b8e91c-6224-4f28-a8f2-094ec646414&title=&width=261.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697174565981-8276d92b-9156-4fff-be63-92bde8a49a0a.png#averageHue=%23fefefe&clientId=uab69c6f3-31c0-4&from=paste&height=63&id=u12d961c1&originHeight=95&originWidth=431&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=6745&status=done&style=none&taskId=u2ab8055b-7c78-4884-a365-f731c6e9d44&title=&width=287.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697178997159-f6817b41-9146-43d6-849e-10ea877a3c44.png#averageHue=%23fdfcfc&clientId=ue89c84f2-51e9-4&from=paste&height=190&id=u7f28af95&originHeight=285&originWidth=697&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=43119&status=done&style=none&taskId=u03abd8bf-d8a8-421a-9967-6935fd5ed49&title=&width=464.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697179256872-9022ca95-cd60-4119-9814-31bae159a97b.png#averageHue=%23fefefe&clientId=ue89c84f2-51e9-4&from=paste&height=59&id=u48faaed1&originHeight=88&originWidth=700&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=10798&status=done&style=none&taskId=uad0924cb-e403-412f-b9df-a2a2e1d96c9&title=&width=466.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697180107385-645318c4-3e7f-47c7-8fa2-71005976e922.png#averageHue=%23fefefe&clientId=ue89c84f2-51e9-4&from=paste&height=46&id=u217ea3a4&originHeight=69&originWidth=681&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=11902&status=done&style=none&taskId=u23eccd09-08d1-4b4e-b32d-63f3921e046&title=&width=454">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697180237089-c57e4ed1-1ecd-4c46-9d9a-7dab68d78e6f.png#averageHue=%23fefefe&clientId=ue89c84f2-51e9-4&from=paste&height=27&id=ueee1c2c2&originHeight=41&originWidth=805&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=7085&status=done&style=none&taskId=udc6c513c-952f-4cef-9b91-4202a796485&title=&width=536.6666666666666">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697180356205-45b72d0a-996d-43fb-ba96-f2af6763d496.png#averageHue=%23e3e3e3&clientId=ue89c84f2-51e9-4&from=paste&height=145&id=u765a43ff&originHeight=217&originWidth=678&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=71299&status=done&style=none&taskId=ub9fc2920-1b62-4ee7-93a7-1b81ddd66c6&title=&width=452">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697180931989-be1967cf-e6b8-4ed3-beb6-80969108613f.png#averageHue=%23fefefe&clientId=ue89c84f2-51e9-4&from=paste&height=73&id=u086f6708&originHeight=110&originWidth=833&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=19288&status=done&style=none&taskId=u82cf3c13-0e48-4117-978f-d56a42100f2&title=&width=555.3333333333334">
+<meta property="article:published_time" content="2024-03-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-29T02:49:19.187Z">
+<meta property="article:author" content="XiaoLi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697102074249-a4b1fbd3-c195-403b-905f-acb3806b2592.png#averageHue=%23fefefe&clientId=ufcce992e-f232-4&from=paste&height=105&id=u4cf9510d&originHeight=157&originWidth=394&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8378&status=done&style=none&taskId=ubd5859a6-44e5-4160-b4a0-236c7f9be0e&title=&width=262.6666666666667">
+  
+    <link rel="alternate" href="/atom.xml" title="木子的学习博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">木子的学习博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Suche"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-linux/Linux之shell编程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/28/linux/Linux%E4%B9%8Bshell%E7%BC%96%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2024-03-27T16:00:00.000Z" itemprop="datePublished">2024-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Linux之shell编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="shell概述"><a href="#shell概述" class="headerlink" title="shell概述"></a>shell概述</h2><p>shell是一个命令行解释器，他接受应用程序&#x2F;用户命令，然后调用操作系统内核<br>shell还是一个功能强大的编程语言，易编写易调试，灵活性强<br>通过  cat  &#x2F;etc&#x2F;shells命令查看Linux提供的shell解释器<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697102074249-a4b1fbd3-c195-403b-905f-acb3806b2592.png#averageHue=%23fefefe&clientId=ufcce992e-f232-4&from=paste&height=105&id=u4cf9510d&originHeight=157&originWidth=394&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8378&status=done&style=none&taskId=ubd5859a6-44e5-4160-b4a0-236c7f9be0e&title=&width=262.6666666666667" alt="image.png"></p>
+<h2 id="Shell脚本入门"><a href="#Shell脚本入门" class="headerlink" title="Shell脚本入门"></a>Shell脚本入门</h2><h5 id="脚本格式"><a href="#脚本格式" class="headerlink" title="脚本格式"></a>脚本格式</h5><p>以**#!&#x2F;bin&#x2F;bash**开头(指定解释器)<br>shell脚本文件就是一个文本文件, 后缀名建议使用 .sh 结尾</p>
+<h5 id="第一个shell程序"><a href="#第一个shell程序" class="headerlink" title="第一个shell程序"></a>第一个shell程序</h5><p><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697102704598-45551d1f-fbdf-44fc-bbef-c4df47c9b75d.png#averageHue=%23fefefe&clientId=ufcce992e-f232-4&from=paste&height=134&id=ub4617a5c&originHeight=201&originWidth=403&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=16968&status=done&style=none&taskId=u419f298e-b57f-4193-89de-4bd2ce63974&title=&width=268.6666666666667" alt="image.png"><br>输入<br>#!&#x2F;bin&#x2F;bash<br>echo “hello world”<br>shell文件执行方式：</p>
+<ol>
+<li>采用bash或sh+脚本的相对路径或绝对路径（无需x权限）<ol>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697102981091-c3b1716e-b2fe-4393-a14b-a458587a50ae.png#averageHue=%23fefefe&clientId=ufcce992e-f232-4&from=paste&height=87&id=u6b9568c9&originHeight=130&originWidth=479&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=15450&status=done&style=none&taskId=u10b555b5-04d5-44f8-8339-6df4677aacb&title=&width=319.3333333333333" alt="image.png"></li>
+</ol>
+</li>
+<li>第二种方法，是直接输入脚本的绝对路径和相对路径（这个方法必须要有对shell文件的x权限）这种的话就相当于直接用当前的这个bash去执行，第一种方法是重新开一个bash进程<ol>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697103163589-95374ec1-0f16-43b0-a9a3-0f206d7442ce.png#averageHue=%23fefefe&clientId=ufcce992e-f232-4&from=paste&height=151&id=ub521e8b1&originHeight=226&originWidth=470&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=29740&status=done&style=none&taskId=udff2437f-26f7-4ce0-a14e-13a1eeb4e9a&title=&width=313.3333333333333" alt="image.png"></li>
+</ol>
+</li>
+<li>在脚本路径前+’.’  or  source，两个都要空格隔开</li>
+</ol>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h4 id="系统预定义变量"><a href="#系统预定义变量" class="headerlink" title="系统预定义变量"></a>系统预定义变量</h4><p>$HOME,$PWD,$SHELL等等，前面都会带一个$<br>可以通过echo查看echo  $HOME<br>通过set命令可以显示shell中所有变量的值<br>通过env展示<br>printenv HOME（不用加$ ，查看变量值）</p>
+<h4 id="自定义变量"><a href="#自定义变量" class="headerlink" title="自定义变量"></a>自定义变量</h4><h5 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h5><ul>
+<li>定义：变量名&#x3D;变量值		（&#x3D;号前后不能有空格，变量值如果有空格，需要用引号包裹起来）</li>
+<li>撤销变量：unset  </li>
+<li>声明静态变量：readonly	变量				这个变量无法unset</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697116957602-6a67530f-4d35-4a42-b2fc-328dfbae3780.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=97&id=u3b896c2e&originHeight=146&originWidth=460&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=17462&status=done&style=none&taskId=u26796ca9-c371-4e30-bc67-271f22c5799&title=&width=306.6666666666667" alt="image.png"></li>
+</ul>
+<h5 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h5><ul>
+<li>不能数字开头，可以字母，数字和下划线组成</li>
+<li>系统变量应该大写</li>
+<li>&#x3D;两边无空格，不然容易被认为指令</li>
+<li>在bash中，变量默认都是字符串类型，无法进行数值运算</li>
+<li>变量值如果有空格，需要用引号括起来</li>
+</ul>
+<h5 id="局部与全局，环境"><a href="#局部与全局，环境" class="headerlink" title="局部与全局，环境"></a>局部与全局，环境</h5><p>外面可以通过bash开启一个子shell<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697114507435-6760af11-15ec-4192-8a8f-984ca24e3a05.png#averageHue=%23fefefe&clientId=ufcce992e-f232-4&from=paste&height=157&id=u597a3ce5&originHeight=235&originWidth=533&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=36669&status=done&style=none&taskId=ud3de8570-e9b9-459e-ac97-63d3c777643&title=&width=355.3333333333333" alt="image.png"><br>再开一个bash，调用pstree<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697116156025-d94d9b53-aafc-41bc-829b-cef74048012d.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=17&id=udc22033f&originHeight=25&originWidth=406&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=1963&status=done&style=none&taskId=ub4068bb9-bd07-4cb6-a537-3faac300c3d&title=&width=270.6666666666667" alt="image.png"><br>观察端口号可以看到父子关系<br>shell变量可以分为局部变量，全局变量，环境变量<br>局部变量就是在函数中写的，作用域也就是函数<br>全局变量就是shell中定义的，作用域在这个shell里面，不同shell进程相互独立，变量不共享，子进程也不共享<br>环境变量被创建时所处的 Shell 进程称为父进程，如果在父进程中再创建一个新的进程来执行 Shell 命令，那么这个新的进程被称作 Shell 子进程。当 Shell 子进程产生时，它会继承父进程的环境变量为自己所用，所以说环境变量可从父进程传给子进程。不难理解，环境变量还可以传递给孙进程。<br>注意，两个没有父子关系的 Shell 进程是不能传递环境变量的，并且环境变量只能向下传递而不能向上传递，即“传子不传父”。<br>通过 export 导出的环境变量只对当前 Shell 进程以及所有的子进程有效，如果最顶层的父进程被关闭了，那么环境变量也就随之消失了，其它的进程也就无法使用了，所以说环境变量也是临时的。<br>如果想要一个变量在所有shell中生效，只能把它放到配置文件中，这样每次shell进程启动时都会执行定义</p>
+<p>一般定义的变量都是全局变量，只在当前shell可以使用，可以通过export升级为环境变量<br>这里没注意，用export $a导出，报错<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697115399801-e327968a-b355-4815-bfc1-a4972189a73e.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=84&id=u646daf3c&originHeight=126&originWidth=385&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=12209&status=done&style=none&taskId=u774101e1-666c-40ae-ba0d-5554210fbce&title=&width=256.6666666666667" alt="image.png"><br>和printenv一样，不要$</p>
+<p>如果想要使用数据运算，可以把那一部分用两个圆括号或一个方括号括起来<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697116827610-cb081323-a70a-4354-8bc2-1616657f4e23.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=122&id=ub269c8e5&originHeight=183&originWidth=309&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=13602&status=done&style=none&taskId=u67503541-ac44-4bfe-b0ab-44d97752a60&title=&width=206" alt="image.png"></p>
+<h4 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h4><h5 id="n"><a href="#n" class="headerlink" title="$n"></a>$n</h5><p>n为数字，$0表示该脚本名称(如果调用shell文件是用路径，名字就是路径)，$1-$9代表第1-9个参数，十以上的参数用大括号包含${10}</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697117611724-6dc1ccf9-8e7b-4062-aeb0-62465f9e4c23.png#averageHue=%23fcfcfc&clientId=ube56a924-337b-4&from=paste&height=173&id=u622e8b04&originHeight=260&originWidth=494&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=31996&status=done&style=none&taskId=u7b4bbd8b-1ab7-4c10-948f-f92b371c252&title=&width=329.3333333333333" alt="image.png"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hello.sh内容如下</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">echo &quot;hello world&quot;</span><br><span class="line">echo hello,$1</span><br><span class="line">echo hei,$2</span><br><span class="line">echo this name:$0</span><br></pre></td></tr></table></figure>
+<h5 id="获取输入参数的个数，常用于循环，判断参数数"><a href="#获取输入参数的个数，常用于循环，判断参数数" class="headerlink" title="$#		获取输入参数的个数，常用于循环，判断参数数"></a>$#		获取输入参数的个数，常用于循环，判断参数数</h5><h5 id="这个变量代表命令行所有参数，把所有参数看成一个整体"><a href="#这个变量代表命令行所有参数，把所有参数看成一个整体" class="headerlink" title="$*		这个变量代表命令行所有参数，把所有参数看成一个整体"></a>$*		这个变量代表命令行所有参数，把所有参数看成一个整体</h5><h5 id="也代表所有参数，不过把每个参数区分对待，可以用循环操作等等"><a href="#也代表所有参数，不过把每个参数区分对待，可以用循环操作等等" class="headerlink" title="$@ 		也代表所有参数，不过把每个参数区分对待，可以用循环操作等等"></a>$@ 		也代表所有参数，不过把每个参数区分对待，可以用循环操作等等</h5><h5 id="最后一次执行命令的返回状态，如果这个变量值为0，证明上一个命令正确执行，非0（可以自己指定说明书）则代表执行不正确"><a href="#最后一次执行命令的返回状态，如果这个变量值为0，证明上一个命令正确执行，非0（可以自己指定说明书）则代表执行不正确" class="headerlink" title="$?		最后一次执行命令的返回状态，如果这个变量值为0，证明上一个命令正确执行，非0（可以自己指定说明书）则代表执行不正确"></a>$?		最后一次执行命令的返回状态，如果这个变量值为0，证明上一个命令正确执行，非0（可以自己指定说明书）则代表执行不正确</h5><h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h5 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h5><p>((expr))	or	[expr]		,expression表达式<br>也可以使用expr函数（注意运算符前后要有空格，特殊的还要加\，比如*）<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697124234717-337015b8-7283-416a-80ef-8fd69df6d49e.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=130&id=u5749475a&originHeight=195&originWidth=358&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=19093&status=done&style=none&taskId=ua2f6b988-3574-48b7-aef4-8b60895fccc&title=&width=238.66666666666666" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697159983867-eee4ff17-625c-4c14-8cd0-b5928d8e8360.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=26&id=ufb5c58a9&originHeight=39&originWidth=386&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=4063&status=done&style=none&taskId=u33c9d72e-a212-4cba-b464-bc5e7c0298c&title=&width=257.3333333333333" alt="image.png"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">sum=$[$1+$2]</span><br><span class="line">echo sum=$sum</span><br></pre></td></tr></table></figure>
+<h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><h4 id="基本语法-1"><a href="#基本语法-1" class="headerlink" title="基本语法"></a>基本语法</h4><p>test condition<br>[ condition ]	（注意condition前后有空格）condition为空，不通过，为字符串，通过<br>可以用echo  $?判断test语句执行是否通过</p>
+<h4 id="常用判断条件"><a href="#常用判断条件" class="headerlink" title="常用判断条件"></a>常用判断条件</h4><h5 id="两个整数比较"><a href="#两个整数比较" class="headerlink" title="两个整数比较"></a>两个整数比较</h5><p>-eq		equal					-ne		not equal			<br>-lt		less than					-le		less equal<br>-gt		greater than				-ge		greater equal	</p>
+<h5 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h5><p>&#x3D;判断相等	!&#x3D;判断不等</p>
+<h5 id="权限判断"><a href="#权限判断" class="headerlink" title="权限判断"></a>权限判断</h5><p>rwx分别代表可读可写可执行<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697162762293-ff462c4a-8b71-4528-ac39-bcad1a42a9e1.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=96&id=u04ec8222&originHeight=144&originWidth=460&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=18439&status=done&style=none&taskId=ufdc24ed4-01f5-47c1-ac05-ca1b7a03a91&title=&width=306.6666666666667" alt="image.png"></p>
+<h5 id="按照文件类型进行判断"><a href="#按照文件类型进行判断" class="headerlink" title="按照文件类型进行判断"></a>按照文件类型进行判断</h5><p>-e	文件存在<br>-f	文件存在并且是一个常规文件<br>-d	文件存在并且是一个目录</p>
+<h5 id="多条件判断"><a href="#多条件判断" class="headerlink" title="多条件判断"></a>多条件判断</h5><p>&amp;&amp;表示前一条命令执行成功时，才会执行后一条<br>||  表示前一条命令失败以后才执行下一条命令<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697163282753-44960425-03e1-4220-a710-336c5c48c63c.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=99&id=ub90eed6b&originHeight=148&originWidth=681&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=24250&status=done&style=none&taskId=u4108136e-9eca-46ae-aff5-8463639b58e&title=&width=454" alt="image.png"></p>
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><h4 id="if判断"><a href="#if判断" class="headerlink" title="if判断"></a>if判断</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">单分支</span><br><span class="line">if [ 条件判断式 ];then</span><br><span class="line">	程序</span><br><span class="line">fi</span><br><span class="line">或者</span><br><span class="line">if	[ 条件判断式 ]</span><br><span class="line">then</span><br><span class="line">	程序</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">多分支</span><br><span class="line">if	 [ 条件判断式 ]</span><br><span class="line">then</span><br><span class="line">	程序</span><br><span class="line">elif [ 条件判断式 ]</span><br><span class="line">then</span><br><span class="line">	程序</span><br><span class="line">else</span><br><span class="line">	程序</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">多条件</span><br><span class="line">if [ 条件判断式 ] &amp;&amp; [ 条件判断式 ]</span><br><span class="line">then</span><br><span class="line">	程序</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697164516758-e16baf44-10f8-40e3-8c0b-304e0e2a4424.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=119&id=ua7d9ceb5&originHeight=179&originWidth=1326&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=32344&status=done&style=none&taskId=u1a8d29d1-e737-445e-acd9-2bc273753ae&title=&width=884" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697164886291-c660e7a5-f80f-436c-9bd8-22edaa59f863.png#averageHue=%23fcfcfc&clientId=ube56a924-337b-4&from=paste&height=40&id=u0c9de02f&originHeight=60&originWidth=825&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8183&status=done&style=none&taskId=u96bfdae9-cc00-4fae-b86e-06b2e43f5e0&title=&width=550" alt="image.png"><br>写入文件中判断<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697165969206-8c473a63-ca64-45c8-92aa-7bb18fd34142.png#averageHue=%23fefefe&clientId=ube56a924-337b-4&from=paste&height=57&id=u306a1c0a&originHeight=85&originWidth=420&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=7538&status=done&style=none&taskId=u75825bff-b297-49ee-acb9-d8bcc7e3d27&title=&width=280" alt="image.png"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">if [ $1 -lt 14 ]</span><br><span class="line">then</span><br><span class="line">    echo &quot;child&quot;</span><br><span class="line">elif [ $1 -le 18 ]</span><br><span class="line">then</span><br><span class="line">    echo &quot;teen&quot;</span><br><span class="line">else</span><br><span class="line">    echo &quot;adult&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h4 id="case语句"><a href="#case语句" class="headerlink" title="case语句"></a>case语句</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">case $变量名 in</span><br><span class="line">&quot;值1&quot;)</span><br><span class="line">  	如果变量值为值1，执行程序1</span><br><span class="line">;;</span><br><span class="line">&quot;值2&quot;)</span><br><span class="line">  	如果变量值为值1，执行程序2</span><br><span class="line">;;</span><br><span class="line">......</span><br><span class="line">*)</span><br><span class="line">  	如果变量的值都不是以上的值，执行此程序</span><br><span class="line">;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<p>注意事项</p>
+<ul>
+<li>case行尾必须为in，每个模式匹配后必须以右括号结束</li>
+<li>双分号;;表示命令序列结束，相当于break</li>
+<li>最后*)表示默认模式，相当于default<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">case $1 in</span><br><span class="line">&quot;1&quot;)</span><br><span class="line">	echo 1</span><br><span class="line">;;</span><br><span class="line">&quot;2&quot;)</span><br><span class="line">	echo 2</span><br><span class="line">;;</span><br><span class="line">&quot;3&quot;)</span><br><span class="line">	echo 3</span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line">	echo no</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697167427018-9d35295f-be62-4338-8031-7646f8a5e72e.png#averageHue=%23fefefe&clientId=uf981242d-c085-4&from=paste&height=279&id=u240c5eaf&originHeight=418&originWidth=487&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=60815&status=done&style=none&taskId=ub1764426-918b-4895-87c6-be022376690&title=&width=324.6666666666667" alt="image.png"></li>
+</ul>
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (( 初始值;循环控制条件；变量变化 ))</span><br><span class="line">do</span><br><span class="line">	程序</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">sum=0</span><br><span class="line">for (( i=$1;i&lt;=$2;i++ ))</span><br><span class="line">do</span><br><span class="line">	sum=$[ $sum+$i ]</span><br><span class="line">done</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697167831018-df49bf1c-9c08-4254-9125-8084e16deb09.png#averageHue=%23fefefe&clientId=uf981242d-c085-4&from=paste&height=97&id=u53351c8b&originHeight=145&originWidth=383&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8375&status=done&style=none&taskId=u5cd0bde5-76db-44eb-8d28-d910ef62de5&title=&width=255.33333333333334" alt="image.png"><br>在双圆括号里面可以使用&lt;&#x3D;这种数学运算符</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for 变量 in 值1 值2 值3...</span><br><span class="line">do</span><br><span class="line">	程序</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">sum=0</span><br><span class="line">for i in &#123;1..5&#125;</span><br><span class="line">do</span><br><span class="line">   sum=$[ $sum+$i ]</span><br><span class="line">done</span><br><span class="line">echo sum=$sum</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697168439145-b9d21346-332f-4ff7-a024-d8f6d3e13f3b.png#averageHue=%23fefefe&clientId=uf981242d-c085-4&from=paste&height=38&id=u2da6765e&originHeight=57&originWidth=336&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=4228&status=done&style=none&taskId=u68d24689-1786-4762-ae50-df5befed16f&title=&width=224" alt="image.png"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">sum=0</span><br><span class="line">for i in $*</span><br><span class="line">do</span><br><span class="line">   sum=$[ $sum+$i ]</span><br><span class="line">done</span><br><span class="line">echo sum=$sum</span><br></pre></td></tr></table></figure>
+<p>带入参数1 2 3，$@ 和$*都是sum&#x3D;6，但是后者是将数据分开的，携带引号是便可以看出区别</p>
+<h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while [ 条件判断式 ]</span><br><span class="line">do</span><br><span class="line">	程序</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h2 id="使用read读取控制台输入"><a href="#使用read读取控制台输入" class="headerlink" title="使用read读取控制台输入"></a>使用read读取控制台输入</h2><h5 id="基本语法-2"><a href="#基本语法-2" class="headerlink" title="基本语法"></a>基本语法</h5><p>read  选项  参数<br>-p	指定读取值时的提示符<br>-l 	指定读取值时的等待的时间&#x2F;s，不加t表示一直等待<br>参数：变量：指定读取值的变量名<br>输出就是echo</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">read -t 7 -p &quot;what&#x27;s your name: &quot; name</span><br><span class="line">echo $name</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697169279993-9d22de70-fefb-4a5a-afa8-f9cceaea8746.png#averageHue=%23fefefe&clientId=uf981242d-c085-4&from=paste&height=55&id=u90e3a618&originHeight=83&originWidth=392&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8675&status=done&style=none&taskId=u78b8e91c-6224-4f28-a8f2-094ec646414&title=&width=261.3333333333333" alt="image.png"></p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h4 id="系统函数"><a href="#系统函数" class="headerlink" title="系统函数"></a>系统函数</h4><h5 id="basename"><a href="#basename" class="headerlink" title="basename"></a>basename</h5><p>基本语法：basename [string&#x2F;pathname] [suffix]<br>basename命令会删掉所有前缀包括最后一个(‘&#x2F;‘)字符，然后将字符串显示出来<br>可以理解为取路径里面的文件名称，比如：basename  &#x2F;root&#x2F;1.txt-&gt;1.txt<br>suffix为后缀，如果suffix呗指定了，basename会将pathname或string中的suffix去掉，比如basename &#x2F;root&#x2F;1.txt  .txt-&gt;1</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">echo &quot;script name: $(basename $0 .sh)&quot;</span><br><span class="line">echo &quot;script path: $(dirname $0) &quot;</span><br><span class="line"></span><br><span class="line">通过以上代码，我们可以知道绝对路径打开文件的时候的路径，但是使用相对路径还差点意思</span><br><span class="line">可以转换一下</span><br><span class="line">echo &quot;script path: $(cd $(dirname $0);pwd) &quot;</span><br><span class="line">这样在相对路径也可以取出绝对路径</span><br></pre></td></tr></table></figure>
+<h4 id="自定义函数"><a href="#自定义函数" class="headerlink" title="自定义函数"></a>自定义函数</h4><h5 id="基本语法-3"><a href="#基本语法-3" class="headerlink" title="基本语法"></a>基本语法</h5><p>function  funcname()<br>{<br>Action<br>return int;<br>}<br>function可写可不写，（）可写可不写，return可写可不写<br>传参和脚本一样，$1,$2…</p>
+<ul>
+<li>在调用函数之前，先声明函数，shell文件逐行运行，不会预编译</li>
+<li>函数返回值只能用$?系统变量获得，可以加return 返回，不加默认以最后一条命令运行结果作为返回值，return后面跟数值n(0-255)<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">function add()</span><br><span class="line">&#123;</span><br><span class="line">	s=$[$1+$2]</span><br><span class="line">  echo s=$s</span><br><span class="line">&#125;</span><br><span class="line">read -p &quot;first num:&quot; a</span><br><span class="line">read -p &quot;second num:&quot; b</span><br><span class="line">add $a $b</span><br></pre></td></tr></table></figure>
+<img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697174565981-8276d92b-9156-4fff-be63-92bde8a49a0a.png#averageHue=%23fefefe&clientId=uab69c6f3-31c0-4&from=paste&height=63&id=u12d961c1&originHeight=95&originWidth=431&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=6745&status=done&style=none&taskId=u2ab8055b-7c78-4884-a365-f731c6e9d44&title=&width=287.3333333333333" alt="image.png"></li>
+</ul>
+<h2 id="正则表达式入门"><a href="#正则表达式入门" class="headerlink" title="正则表达式入门"></a>正则表达式入门</h2><h5 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h5><p>正则表达式使用单个字符串来描述，匹配一些列符合某个语法规则的字符串，在很多文本编辑器中，其呗用来检索替换那些符合某个模式的文本</p>
+<h4 id="常规匹配"><a href="#常规匹配" class="headerlink" title="常规匹配"></a>常规匹配</h4><p>不含特殊字符的，比如：cat &#x2F;etc&#x2F;passwd | grep centos，这个就是在passwd文件里面匹配所有包含centos的行</p>
+<h4 id="常用特殊字符"><a href="#常用特殊字符" class="headerlink" title="常用特殊字符"></a>常用特殊字符</h4><ol>
+<li>^<ol>
+<li>^匹配一行的开头</li>
+<li>例：cat &#x2F;etc&#x2F;passwd | grep ^a，会匹配所有以a开头的行</li>
+</ol>
+</li>
+<li>$<ol>
+<li>匹配一行的结束</li>
+<li>例：cat &#x2F;etc&#x2F;passwd | grep a$，会匹配所有以a结尾的行</li>
+<li>^$匹配空行</li>
+</ol>
+</li>
+<li>.</li>
+<li>匹配任意字符</li>
+<li>例：cat &#x2F;etc&#x2F;passwd | grep r..t，会匹配rabt,rbbt,root等待所有行</li>
+<li><ul>
+<li></li>
+</ul>
+<ol>
+<li>不单独使用，表示上一个字符0次或多次</li>
+<li>cat &#x2F;etc&#x2F;passwd | grep ro*t，表示rt,rot,root,rooot等等所有行</li>
+<li>.*可以匹配任意，比如我可以^a.*b$，表示以a开头，b结尾的所有行</li>
+</ol>
+</li>
+<li>字符区间[]<ol>
+<li>[]表示匹配某个范围内的一个字符</li>
+<li>[6,8]匹配6或者8，逗号可以去掉</li>
+<li>[0-9]匹配一个0-9的数字</li>
+<li>[0-9]*表示匹配任意长度的数字字符串</li>
+<li>[a-z]匹配一个a到z之间的字符</li>
+<li>[a-z]*匹配任意长度的小写字母字符串</li>
+<li>[a-c,e-f]，匹配a到c，e到f之间的一个字母</li>
+<li>-E 支持拓展，我们可以使用一个大括号表示重复次数，比如：echo 1234 | grep  -E  ^1[0-9][0-9][0-9]，就可以变为echo 1234 | grep  -E  ^1[0-9]{3}</li>
+</ol>
+</li>
+</ol>
+<h2 id="文本处理工具"><a href="#文本处理工具" class="headerlink" title="文本处理工具"></a>文本处理工具</h2><h5 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h5><ol>
+<li>cut  cut命令从文件的每一行剪切字节，字符和字段并将这些字节字符和字段输出</li>
+<li>cut  选项参数  filename<ol>
+<li>-f	列号，提取第几列，取多行逗号连接，也可以使用1-6这类的，4-，就表示4以后的所有列</li>
+<li>-d	分隔符，按照指定分隔符分割列，默认是制表符“\t”</li>
+<li>-c	按字符进行切割，后加n表示取第几列，比如 -c  2</li>
+</ol>
+<p>	</p>
+</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697178997159-f6817b41-9146-43d6-849e-10ea877a3c44.png#averageHue=%23fdfcfc&clientId=ue89c84f2-51e9-4&from=paste&height=190&id=u7f28af95&originHeight=285&originWidth=697&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=43119&status=done&style=none&taskId=u03abd8bf-d8a8-421a-9967-6935fd5ed49&title=&width=464.6666666666667" alt="image.png"></li>
+<li>切割获得ip<img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697179256872-9022ca95-cd60-4119-9814-31bae159a97b.png#averageHue=%23fefefe&clientId=ue89c84f2-51e9-4&from=paste&height=59&id=u48faaed1&originHeight=88&originWidth=700&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=10798&status=done&style=none&taskId=uad0924cb-e403-412f-b9df-a2a2e1d96c9&title=&width=466.6666666666667" alt="image.png"></li>
+</ol>
+<h5 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h5><ol>
+<li>一个强大的文本分析工具，逐行读入文件，以空格为默认分隔符将每行切片，切开部分再进行分割处理</li>
+<li>基本用法：awk  选项参数  ‘&#x2F;pattern1&#x2F;{action1}  &#x2F;pattern2&#x2F;{action2}  ……’  filename</li>
+<li>pattern: 表示awk在数据中查找的内容，就是匹配模式</li>
+<li>action：表示在找到匹配内容时所执行的一系列命令，里面提供了print，可以打印，另外，它提取到的就和参数一样，可以通过$n查看</li>
+<li>-F	指定输入文件分隔符</li>
+<li>-v	赋值一个用户定义变量</li>
+<li>搜索passwd文件以root开头的所有行，输出第七列<img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697180107385-645318c4-3e7f-47c7-8fa2-71005976e922.png#averageHue=%23fefefe&clientId=ue89c84f2-51e9-4&from=paste&height=46&id=u217ea3a4&originHeight=69&originWidth=681&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=11902&status=done&style=none&taskId=u23eccd09-08d1-4b4e-b32d-63f3921e046&title=&width=454" alt="image.png"></li>
+<li>搜索passwd文件以root开头的所有行，输出第1，7列，以，分隔<img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697180237089-c57e4ed1-1ecd-4c46-9d9a-7dab68d78e6f.png#averageHue=%23fefefe&clientId=ue89c84f2-51e9-4&from=paste&height=27&id=ueee1c2c2&originHeight=41&originWidth=805&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=7085&status=done&style=none&taskId=udc6c513c-952f-4cef-9b91-4202a796485&title=&width=536.6666666666666" alt="image.png">字符‘，’需要用引号包括</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697180356205-45b72d0a-996d-43fb-ba96-f2af6763d496.png#averageHue=%23e3e3e3&clientId=ue89c84f2-51e9-4&from=paste&height=145&id=u765a43ff&originHeight=217&originWidth=678&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=71299&status=done&style=none&taskId=ub9fc2920-1b62-4ee7-93a7-1b81ddd66c6&title=&width=452" alt="image.png"></li>
+<li>将passwd文件中用户id加数值并输出awk -v i&#x3D;1 -F “:” ‘{print $3+i}’ passwd</li>
+<li>awk内置变量</li>
+<li>FILENAME		文件名</li>
+<li>NR				已读的记录数（行号）</li>
+<li>NF				浏览记录的域的个数（切割后，列的个数）</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697180931989-be1967cf-e6b8-4ed3-beb6-80969108613f.png#averageHue=%23fefefe&clientId=ue89c84f2-51e9-4&from=paste&height=73&id=u086f6708&originHeight=110&originWidth=833&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=19288&status=done&style=none&taskId=u82cf3c13-0e48-4117-978f-d56a42100f2&title=&width=555.3333333333334" alt="image.png"></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/28/linux/Linux%E4%B9%8Bshell%E7%BC%96%E7%A8%8B/" data-id="cluc2gj2n0008ac6z8cun9q9a" data-title="Linux之shell编程" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/28/linux/Linux%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Linux基本操作
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/28/linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">Linux常用命令</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/29/linux/%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF/">发送消息</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/29/linux/%E6%8C%89%E6%97%B6%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6/">安置归档文件</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/28/JavaScript/JavaScriptStudy/">JavaScriptStudy</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/28/linux/Linux%E6%A6%82%E8%BF%B0/">Linux概述</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/28/linux/Linux%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">Linux基本操作</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 XiaoLi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

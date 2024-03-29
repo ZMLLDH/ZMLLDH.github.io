@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Linux常用命令 | 木子的学习博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="shell可以看作一个命令解释器，为我们提供了交互式的文本控制台界面我们通过终端控制台来输入命令，shell进行解释并最终交给内核执行 帮助命令12# 基本语法man [命令或配置文件]   获取内置命令的帮助信息像ls这种，man一下可以直接出来，但是man一下cd，出来的时bash有一部分的基础功能的系统命令时直接内嵌的shell中的，系统加载以后会随着shell一起加载，常驻系统内存中，这些">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux常用命令">
+<meta property="og:url" content="http://example.com/2024/03/28/linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/index.html">
+<meta property="og:site_name" content="木子的学习博客">
+<meta property="og:description" content="shell可以看作一个命令解释器，为我们提供了交互式的文本控制台界面我们通过终端控制台来输入命令，shell进行解释并最终交给内核执行 帮助命令12# 基本语法man [命令或配置文件]   获取内置命令的帮助信息像ls这种，man一下可以直接出来，但是man一下cd，出来的时bash有一部分的基础功能的系统命令时直接内嵌的shell中的，系统加载以后会随着shell一起加载，常驻系统内存中，这些">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835459436-ae3d6613-652e-4eaa-a67c-3be166c970dd.png#averageHue=%23f8f8f8&clientId=u887a2894-e6ca-4&from=paste&height=105&id=u29f12ac0&originHeight=158&originWidth=732&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8569&status=done&style=none&taskId=u677955f5-6133-40c4-85fa-91807bfe0f4&title=&width=488">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835477011-0a2577c2-7489-4f46-960c-f461c630d558.png#averageHue=%23fbfbfb&clientId=u887a2894-e6ca-4&from=paste&height=343&id=u69d42f90&originHeight=514&originWidth=739&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=49729&status=done&style=none&taskId=ue37fc1d5-8ffb-4769-a761-2340d8686ae&title=&width=492.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835619300-99956f87-3de4-4bff-befa-2cd6c2956860.png#averageHue=%23fcfcfc&clientId=u887a2894-e6ca-4&from=paste&height=349&id=u6e5481bf&originHeight=524&originWidth=757&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=96822&status=done&style=none&taskId=u21f82f64-484b-4cbf-b6b0-0fb5ffd3420&title=&width=504.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835789097-9a2722ba-cd0c-493c-976d-8917051b765e.png#averageHue=%23fefefe&clientId=u887a2894-e6ca-4&from=paste&height=59&id=ubeb062f6&originHeight=89&originWidth=344&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=9155&status=done&style=none&taskId=u150a7175-6109-4bc5-a2fc-60ebf7fc44a&title=&width=229.33333333333334">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835955628-614d5b76-6599-429d-af53-9f7944e09728.png#averageHue=%23fefefe&clientId=u887a2894-e6ca-4&from=paste&height=37&id=u6bda277f&originHeight=55&originWidth=323&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=4117&status=done&style=none&taskId=u27e90311-e64d-4d94-9b74-f5cdd9f1402&title=&width=215.33333333333334">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835918711-0bba1b40-a8aa-41d5-9f44-42b1ff038f22.png#averageHue=%23fcfcfc&clientId=u887a2894-e6ca-4&from=paste&height=344&id=u5c39eb2b&originHeight=516&originWidth=753&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=93870&status=done&style=none&taskId=u5cc3f864-5470-4361-b723-2e6e45bfb30&title=&width=502">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835969370-9dcbe504-239d-4a4d-b365-cfb9ba7e5316.png#averageHue=%23fcfcfc&clientId=u887a2894-e6ca-4&from=paste&height=353&id=XjF6e&originHeight=530&originWidth=763&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=80881&status=done&style=none&taskId=u0a4a9305-ae3c-4179-b187-4e79d2cc857&title=&width=508.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696836066554-7303c395-29bc-4f82-bf7a-b7b369713b84.png#averageHue=%23fefefe&clientId=u887a2894-e6ca-4&from=paste&height=345&id=u5b564a3f&originHeight=518&originWidth=790&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=71569&status=done&style=none&taskId=u541b032c-21f8-4077-a4b2-59e0ef817a7&title=&width=526.6666666666666">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696852336215-281bbe1f-82e2-443a-a867-6488bc52ac62.png#averageHue=%23fcfcfc&clientId=u887a2894-e6ca-4&from=paste&height=349&id=ud1d4ad7d&originHeight=523&originWidth=722&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=88317&status=done&style=none&taskId=u7acf390a-b71d-4c83-8dbe-c014324bd56&title=&width=481.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696853341107-cdb10736-cd34-4190-ba1b-144f811b9328.png#averageHue=%23fcfcfc&clientId=u887a2894-e6ca-4&from=paste&height=345&id=ufbbef0d3&originHeight=517&originWidth=747&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=90211&status=done&style=none&taskId=ufd5e32c0-8083-4440-b050-d86836067e8&title=&width=498">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696854282474-27412ef4-adf2-41e4-b5ba-f94d104a624c.png#averageHue=%23eeeeee&clientId=u887a2894-e6ca-4&from=paste&height=163&id=ue12077ea&originHeight=244&originWidth=592&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=59312&status=done&style=none&taskId=u94dc396a-a3b2-4c48-bead-96129d47280&title=&width=394.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696854095301-0c446d3e-9d78-40c6-8332-a678de9bd348.png#averageHue=%23eeeeee&clientId=u887a2894-e6ca-4&from=paste&height=136&id=lPpnH&originHeight=204&originWidth=589&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=60443&status=done&style=none&taskId=u32536b0d-515a-4f43-ab8e-e2d814c8799&title=&width=392.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696854644778-a625341a-4740-4e94-b0af-04d3f38d01e2.png#averageHue=%23fefefe&clientId=u887a2894-e6ca-4&from=paste&height=139&id=u2ef520ee&originHeight=209&originWidth=442&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=20057&status=done&style=none&taskId=u81358a65-4a45-44ec-8a6c-f622cd59890&title=&width=294.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696868725004-98dd4e1d-95c5-4016-b0c9-57512320b8e2.png#averageHue=%23fefefe&clientId=u9fd660ed-694b-4&from=paste&height=153&id=u0379ec8c&originHeight=229&originWidth=505&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=36058&status=done&style=none&taskId=ub4c061d6-6cfe-4ab1-946f-4ab607b2820&title=&width=336.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696869068952-9c7bcb60-471f-4c32-9b00-5f9267d5a3fc.png#clientId=u9fd660ed-694b-4&from=paste&height=342&id=ud65cbda8&originHeight=513&originWidth=704&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=74948&status=done&style=none&taskId=ua6c288ab-d379-4b91-ba4e-34d9ad69110&title=&width=469.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696898071973-eed0c99c-d1e7-4a66-bffa-1099e1198b84.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=209&id=u249c8757&originHeight=313&originWidth=634&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=49583&status=done&style=none&taskId=u98e895ab-2d55-41da-8dec-686972e6b7e&title=&width=422.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696898121959-74c0c02c-6081-42a1-99dd-19a9ec6b2029.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=53&id=u7afc7a45&originHeight=79&originWidth=419&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=7362&status=done&style=none&taskId=uaad71dfc-8053-4bba-98af-01c6532ebbd&title=&width=279.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696900862525-a676a2c3-74e6-4eed-ba2f-f0dd4aac623c.png#averageHue=%23f0f0f0&clientId=u3661de1c-05d3-4&from=paste&height=165&id=u7a0e2ba2&originHeight=247&originWidth=568&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=67349&status=done&style=none&taskId=ub42be274-ba47-4364-bd8a-7dae19207d0&title=&width=378.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696942217782-c4fbcc6f-7cc4-4dbe-a8cb-38505cff382b.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=213&id=u2234023b&originHeight=319&originWidth=665&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=47149&status=done&style=none&taskId=uae08d5c7-b742-414a-a5c8-b1822c5124e&title=&width=443.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696945123497-cf7a84af-962d-42ce-88f4-c5dd972cee22.png#averageHue=%23fafaf9&clientId=u3661de1c-05d3-4&from=paste&height=338&id=uf3ec86bf&originHeight=507&originWidth=739&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=85372&status=done&style=none&taskId=u6320b262-ee1f-4697-b730-504213158fe&title=&width=492.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696946093007-6d204989-d664-4993-be9e-ff0587398007.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=232&id=u132fb28a&originHeight=348&originWidth=723&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=58964&status=done&style=none&taskId=uc6f56a37-5c3b-4166-8b5f-2df1682daa1&title=&width=482">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696946114603-afb9e2f6-49b8-41ce-8ca5-c1093fb5ca11.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=375&id=uab86cace&originHeight=562&originWidth=561&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=71943&status=done&style=none&taskId=uf68e28c3-4d68-4e94-b29a-f440dd195ea&title=&width=374">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696946336875-331bbd31-4b01-460e-94a2-779b7a8e20be.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=162&id=ue283b9e5&originHeight=243&originWidth=663&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=35276&status=done&style=none&taskId=u4565e23d-01f8-4dab-ab80-3668613410c&title=&width=442">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696985457756-a565d715-232e-41a9-a150-a33086b346c0.png#averageHue=%23e9e8ea&clientId=u3661de1c-05d3-4&from=paste&height=114&id=ufbdc1b33&originHeight=171&originWidth=470&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=65380&status=done&style=none&taskId=u3f9f0f99-0ab8-4fc0-9774-168333c25ef&title=&width=313.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696987581488-b7471d6b-50a8-4dd2-9c43-ac12502e6c7c.png#averageHue=%23242424&clientId=u3661de1c-05d3-4&from=paste&height=297&id=u66d4dec5&originHeight=446&originWidth=1157&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=70176&status=done&style=none&taskId=u96fbc755-0b7b-4cae-aab4-2ec00d50698&title=&width=771.3333333333334">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696993363115-53a8708e-6864-4776-82d8-d13752ad6ef2.png#averageHue=%23f3f3f3&clientId=u29adce17-3961-4&from=paste&height=199&id=u91fd33fb&originHeight=299&originWidth=596&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=69491&status=done&style=none&taskId=u2f6d2dd5-aa75-4834-9060-bc2129fa539&title=&width=397.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696993420744-d3fcceb3-93f2-4e1e-9aa8-0448094a4e2c.png#averageHue=%23f2f2f2&clientId=u29adce17-3961-4&from=paste&height=221&id=u0c1e5c28&originHeight=332&originWidth=607&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=103893&status=done&style=none&taskId=uff108539-ca5a-4395-80c6-72a6e18cc32&title=&width=404.6666666666667">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696993574934-2f86d773-fb5c-48c8-b721-e8611183d16c.png#averageHue=%23f0f0f0&clientId=u29adce17-3961-4&from=paste&height=225&id=u9fca5d92&originHeight=338&originWidth=608&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=117548&status=done&style=none&taskId=u6ab19e59-ab1f-48a9-b3d8-0dd43187fe2&title=&width=405.3333333333333">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697095327767-5fb6cda5-1dec-4760-8205-9e5a1e815a18.png#averageHue=%23dddddd&clientId=u29adce17-3961-4&from=paste&height=144&id=u183891e1&originHeight=216&originWidth=528&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=97906&status=done&style=none&taskId=ua2feafb9-3a3f-4a86-8f62-5ed94b8c3b7&title=&width=352">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697101046964-0f430576-2b2c-4366-9d55-e742743917e4.png#averageHue=%23fefefe&clientId=ub430d930-9a42-4&from=paste&height=103&id=u1aa1597a&originHeight=154&originWidth=668&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=26602&status=done&style=none&taskId=ub47ea28d-a45c-410b-a67f-d4d54fc4996&title=&width=445.3333333333333">
+<meta property="article:published_time" content="2024-03-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-29T02:48:24.658Z">
+<meta property="article:author" content="XiaoLi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835459436-ae3d6613-652e-4eaa-a67c-3be166c970dd.png#averageHue=%23f8f8f8&clientId=u887a2894-e6ca-4&from=paste&height=105&id=u29f12ac0&originHeight=158&originWidth=732&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8569&status=done&style=none&taskId=u677955f5-6133-40c4-85fa-91807bfe0f4&title=&width=488">
+  
+    <link rel="alternate" href="/atom.xml" title="木子的学习博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">木子的学习博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Suche"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-linux/Linux常用命令" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/03/28/linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
+  <time class="dt-published" datetime="2024-03-27T16:00:00.000Z" itemprop="datePublished">2024-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Linux常用命令
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>shell可以看作一个命令解释器，为我们提供了交互式的文本控制台界面<br>我们通过终端控制台来输入命令，shell进行解释并最终交给内核执行</p>
+<h3 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基本语法</span></span><br><span class="line">man [命令或配置文件] </span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835459436-ae3d6613-652e-4eaa-a67c-3be166c970dd.png#averageHue=%23f8f8f8&clientId=u887a2894-e6ca-4&from=paste&height=105&id=u29f12ac0&originHeight=158&originWidth=732&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=8569&status=done&style=none&taskId=u677955f5-6133-40c4-85fa-91807bfe0f4&title=&width=488" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835477011-0a2577c2-7489-4f46-960c-f461c630d558.png#averageHue=%23fbfbfb&clientId=u887a2894-e6ca-4&from=paste&height=343&id=u69d42f90&originHeight=514&originWidth=739&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=49729&status=done&style=none&taskId=ue37fc1d5-8ffb-4769-a761-2340d8686ae&title=&width=492.6666666666667" alt="image.png"></p>
+<h5 id="获取内置命令的帮助信息"><a href="#获取内置命令的帮助信息" class="headerlink" title="获取内置命令的帮助信息"></a>获取内置命令的帮助信息</h5><p>像ls这种，man一下可以直接出来，但是man一下cd，出来的时bash<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835619300-99956f87-3de4-4bff-befa-2cd6c2956860.png#averageHue=%23fcfcfc&clientId=u887a2894-e6ca-4&from=paste&height=349&id=u6e5481bf&originHeight=524&originWidth=757&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=96822&status=done&style=none&taskId=u21f82f64-484b-4cbf-b6b0-0fb5ffd3420&title=&width=504.6666666666667" alt="image.png"><br>有一部分的基础功能的系统命令时直接内嵌的shell中的，系统加载以后会随着shell一起加载，常驻系统内存中，这些命令叫做“内置命令”，其他的命令就叫做外部命令<br>我们可以通过type来判断命令类型<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835789097-9a2722ba-cd0c-493c-976d-8917051b765e.png#averageHue=%23fefefe&clientId=u887a2894-e6ca-4&from=paste&height=59&id=ubeb062f6&originHeight=89&originWidth=344&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=9155&status=done&style=none&taskId=u150a7175-6109-4bc5-a2fc-60ebf7fc44a&title=&width=229.33333333333334" alt="image.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">内置命令需要加-f</span><br><span class="line">man -f 命令</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835955628-614d5b76-6599-429d-af53-9f7944e09728.png#averageHue=%23fefefe&clientId=u887a2894-e6ca-4&from=paste&height=37&id=u6bda277f&originHeight=55&originWidth=323&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=4117&status=done&style=none&taskId=u27e90311-e64d-4d94-9b74-f5cdd9f1402&title=&width=215.33333333333334" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835918711-0bba1b40-a8aa-41d5-9f44-42b1ff038f22.png#averageHue=%23fcfcfc&clientId=u887a2894-e6ca-4&from=paste&height=344&id=u5c39eb2b&originHeight=516&originWidth=753&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=93870&status=done&style=none&taskId=u5cc3f864-5470-4361-b723-2e6e45bfb30&title=&width=502" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696835969370-9dcbe504-239d-4a4d-b365-cfb9ba7e5316.png#averageHue=%23fcfcfc&clientId=u887a2894-e6ca-4&from=paste&height=353&id=XjF6e&originHeight=530&originWidth=763&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=80881&status=done&style=none&taskId=u0a4a9305-ae3c-4179-b187-4e79d2cc857&title=&width=508.6666666666667" alt="image.png"></p>
+<p>我们也可以用help去获取</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 内置命令使用help格式</span></span><br><span class="line"><span class="built_in">help</span> 命令</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696836066554-7303c395-29bc-4f82-bf7a-b7b369713b84.png#averageHue=%23fefefe&clientId=u887a2894-e6ca-4&from=paste&height=345&id=u5b564a3f&originHeight=518&originWidth=790&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=71569&status=done&style=none&taskId=u541b032c-21f8-4077-a4b2-59e0ef817a7&title=&width=526.6666666666666" alt="image.png"><br>对于非内置命令，help格式如下<br>命令 –help</p>
+<h5 id="shell常用快捷键"><a href="#shell常用快捷键" class="headerlink" title="shell常用快捷键"></a>shell常用快捷键</h5><p>reset	把当前shell界面全部清空，相当于重新启动了，但是可以通过上下键找到过往输入语句<br>Ctrl+C	中止当前进程<br>Ctrl+L	清屏，reset是彻底清屏<br>上下键，查找执行过的命令</p>
+<h3 id="目录操作命令"><a href="#目录操作命令" class="headerlink" title="目录操作命令"></a>目录操作命令</h3><ol>
+<li>pwd		显示当前工作目录的绝对路径<ol>
+<li>pwd		：print working directory</li>
+</ol>
+</li>
+<li>cd		切换目录，切换路径<ol>
+<li>cd 		：Change Directory</li>
+<li>cd 参数<ol>
+<li>cd绝对路径&#x2F;相对路径	切换路径</li>
+<li>cd  或者cd ~			返回家目录</li>
+<li>cd -					返回上一次所在目录</li>
+<li>cd ..					返回当前目录的上一级目录</li>
+<li>cd -P				跳转的实际物理路径，而不是快捷方式路径</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>ls		列出目录的内容<ol>
+<li>ls		：list</li>
+<li>语法：ls [选项] [目录或者文件]<ol>
+<li>选项说明</li>
+<li>-a		全部的文件，联通隐藏文件（开头为.的文件）</li>
+<li>-l		长数据串列出，包含文件的属性和权限等等数据，ls -l等价于ll</li>
+<li>列出的信息依次是：文件类型与权限，连接数，文件属主，文件属组，文件大小（byte），建立或最近修改的时间，名字</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>mkdir	创建一个新的目录<ol>
+<li>mkdir	：Make directory 建立目录</li>
+<li>mkdir [选项] 要创建的目录<ol>
+<li>-p	创建多层目录</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>rmdir	删除一个空的目录<ol>
+<li>rmdir	Remove directory</li>
+<li>rmdir 要删除的空目录</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696852336215-281bbe1f-82e2-443a-a867-6488bc52ac62.png#averageHue=%23fcfcfc&clientId=u887a2894-e6ca-4&from=paste&height=349&id=ud1d4ad7d&originHeight=523&originWidth=722&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=88317&status=done&style=none&taskId=u7acf390a-b71d-4c83-8dbe-c014324bd56&title=&width=481.3333333333333" alt="image.png"></li>
+<li>利用-p，可以删完c，发现b也是空目录，也删除，然后同理删除a</li>
+</ol>
+</li>
+<li>touch	创建空文件<ol>
+<li>touch  文件名称</li>
+</ol>
+</li>
+<li>cp		复制文件或目录<ol>
+<li>cp [选项] source dest		复制source文件到dest</li>
+<li>dest为文件夹，直接复制过去，若为文件，则会提示是否覆盖；如果是\cp，可以强制覆盖，没有提示</li>
+<li>source为目录，选项-r，递归复制整个文件夹</li>
+</ol>
+</li>
+<li>rm 		删除文件或目录<ol>
+<li>rm [选项] deleteFile		递归删除目录中所有内容</li>
+<li>选项<ol>
+<li>-r	递归删除目录里面所有内容</li>
+<li>-f	强制执行删除操作，不用提示</li>
+<li>-v	显示指令的详细执行过程</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696853341107-cdb10736-cd34-4190-ba1b-144f811b9328.png#averageHue=%23fcfcfc&clientId=u887a2894-e6ca-4&from=paste&height=345&id=ufbbef0d3&originHeight=517&originWidth=747&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=90211&status=done&style=none&taskId=ufd5e32c0-8083-4440-b050-d86836067e8&title=&width=498" alt="image.png"></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>mv		move，移动文件夹或者是重命名<ol>
+<li>mv oldNameFile newNameFile	重命名</li>
+<li>mv oldPath newPath			移动文件</li>
+</ol>
+</li>
+<li>cat		查看文件内容</li>
+<li>cat 选项 要查看的文件（一般查看比较小的）<ol>
+<li>-n 显示所有行的行号，包括空行</li>
+</ol>
+</li>
+<li>more	文件内容分屏查看器</li>
+<li>more是一个基于vi编辑器的文本过滤器，通过全屏幕按页显示文本文件内容</li>
+<li>more  要查看的文件</li>
+<li>相关操作键如下</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696854282474-27412ef4-adf2-41e4-b5ba-f94d104a624c.png#averageHue=%23eeeeee&clientId=u887a2894-e6ca-4&from=paste&height=163&id=ue12077ea&originHeight=244&originWidth=592&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=59312&status=done&style=none&taskId=u94dc396a-a3b2-4c48-bead-96129d47280&title=&width=394.6666666666667" alt="image.png"></li>
+<li>less		分屏显示文件内容</li>
+<li>和more类似，但是更强大，支持各种显示终端，与more相比，less并不是一次性加载完整个文件以后才显示，而是根据显示需要加载内容，显示大型文件有较高效率</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696854095301-0c446d3e-9d78-40c6-8332-a678de9bd348.png#averageHue=%23eeeeee&clientId=u887a2894-e6ca-4&from=paste&height=136&id=lPpnH&originHeight=204&originWidth=589&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=60443&status=done&style=none&taskId=u32536b0d-515a-4f43-ab8e-e2d814c8799&title=&width=392.6666666666667" alt="image.png"></li>
+<li>echo	输出内容到控制台</li>
+<li>-e 支持反斜线控制的字符转换</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696854644778-a625341a-4740-4e94-b0af-04d3f38d01e2.png#averageHue=%23fefefe&clientId=u887a2894-e6ca-4&from=paste&height=139&id=u2ef520ee&originHeight=209&originWidth=442&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=20057&status=done&style=none&taskId=u81358a65-4a45-44ec-8a6c-f622cd59890&title=&width=294.6666666666667" alt="image.png"></li>
+<li><blockquote>
+<p>输出重定向 ；	&gt;&gt;追加</p>
+</blockquote>
+</li>
+<li>ls -l &gt; 文件				列表内容写入文件（覆盖写）</li>
+<li>ls -al &gt;&gt; 文件				列表内容追加到文件的末尾</li>
+<li>cat 文件1 &gt;文件2			文件1的内容覆盖到文件2</li>
+<li>echo  文件&#x2F;“内容”&gt; 文件</li>
+<li>head	显示文件头部内容</li>
+<li>head  文件		默认情况下head指令显示文件头十行内容</li>
+<li>head -n 5 文件		查看前五行内容</li>
+<li>tail		显示文件</li>
+<li>默认后十行，tail -n 5 文件这些都是类比head的</li>
+<li>另外，tail -f 文件		实时追踪最新的内容，监视文件变化 </li>
+<li>ln		软链接</li>
+<li>软链接也叫符号链接，有自己的数据块，主要存放连接了其他文件的路径，类似快捷方式</li>
+<li>ln -s [原文件或目录] [软链接名]			给原文件创建一个软链接</li>
+<li>删除：	rm -rf 软链接名</li>
+<li>rm -rf 软链接名&#x2F;		加上&#x2F;会把软链接对应的真是目录下内容删掉</li>
+<li>通过ll可以查看软链接，列表属性第一个是l，尾部有位置指向</li>
+<li>ln [原文件或目录] [软链接名]硬链接</li>
+<li>history	查看已经执行过的命令</li>
+<li>history -c清空历史</li>
+<li>history展现的历史命令会带编号，！编号会输出那一条命令到控制台</li>
+</ol>
+<h3 id="时间日期类"><a href="#时间日期类" class="headerlink" title="时间日期类"></a>时间日期类</h3><p>date	 [OPTION] …… [+FORMAT]</p>
+<ul>
+<li>-d	时间字符串，显示指定的时间字符串表示的时间（不是当前时间）</li>
+<li>-s	设置系统日期时间</li>
+<li>后面那个指定显示时使用的日期时间格式<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">date						显示当前时间</span><br><span class="line">date +%Y/%m/%d				显示当前年份/月份/日子</span><br><span class="line">date <span class="string">&quot;+%Y-%m-%d %H:%M:%S&quot;</span>	显示年月日时分秒</span><br><span class="line">date +%y					年份后两位</span><br><span class="line">date +%s					时间戳</span><br></pre></td></tr></table></figure>
+<img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696868725004-98dd4e1d-95c5-4016-b0c9-57512320b8e2.png#averageHue=%23fefefe&clientId=u9fd660ed-694b-4&from=paste&height=153&id=u0379ec8c&originHeight=229&originWidth=505&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=36058&status=done&style=none&taskId=ub4c061d6-6cfe-4ab1-946f-4ab607b2820&title=&width=336.6666666666667" alt="image.png"></li>
+</ul>
+<h5 id="date显示非当前时间"><a href="#date显示非当前时间" class="headerlink" title="date显示非当前时间"></a>date显示非当前时间</h5><p>date -d ‘1 days ago’		显示前一天时间<br>date -d ‘-1 days ago’		显示明天时间</p>
+<h5 id="设置系统时间"><a href="#设置系统时间" class="headerlink" title="设置系统时间"></a>设置系统时间</h5><p>date -s  字符串时间</p>
+<h5 id="cal查看日历"><a href="#cal查看日历" class="headerlink" title="cal查看日历"></a>cal查看日历</h5><p>cal	不加选项显示本月日历<br>cal 选项<br>选项：具体某一年，显示这一年的日历<img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696869068952-9c7bcb60-471f-4c32-9b00-5f9267d5a3fc.png#clientId=u9fd660ed-694b-4&from=paste&height=342&id=ud65cbda8&originHeight=513&originWidth=704&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=74948&status=done&style=none&taskId=ua6c288ab-d379-4b91-ba4e-34d9ad69110&title=&width=469.3333333333333" alt="image.png"></p>
+<h3 id="用户管理命令"><a href="#用户管理命令" class="headerlink" title="用户管理命令"></a>用户管理命令</h3><ol>
+<li>useradd		添加新用户<ol>
+<li>useradd  用户名			添加新用户</li>
+<li>useradd  -g  组名  用户名	添加新用户到某个组</li>
+</ol>
+</li>
+<li>password		设置用户密码<ol>
+<li>passwd 用户名</li>
+</ol>
+</li>
+<li>id 用户名		查看用户是否存在</li>
+<li>cat  &#x2F;etc&#x2F;passwd  	查看创建了哪些用户</li>
+<li>su		切换用户</li>
+<li>sudo	设置普通用户具有root权限<ol>
+<li>把该用户添加到sudoers文件里面</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696898071973-eed0c99c-d1e7-4a66-bffa-1099e1198b84.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=209&id=u249c8757&originHeight=313&originWidth=634&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=49583&status=done&style=none&taskId=u98e895ab-2d55-41da-8dec-686972e6b7e&title=&width=422.6666666666667" alt="image.png"></li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696898121959-74c0c02c-6081-42a1-99dd-19a9ec6b2029.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=53&id=u7afc7a45&originHeight=79&originWidth=419&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=7362&status=done&style=none&taskId=uaad71dfc-8053-4bba-98af-01c6532ebbd&title=&width=279.3333333333333" alt="image.png"></li>
+</ol>
+</li>
+<li>userdel		删除用户名<ol>
+<li>这里常规删除测试用户test的时候，出现报错：userdel: user test is currently used by process 12294；使用kill命令杀死进程，然后userdel  -rf  test执行完毕</li>
+</ol>
+</li>
+<li>groupadd	新增组</li>
+<li>groupdel		删除组</li>
+<li>groupmod	改变组</li>
+<li>cat	&#x2F;etc&#x2F;group		查看创建的组</li>
+<li>chomd </li>
+<li>两种方式变更文件权限<ol>
+<li>chmod [{ugoa} {+-&#x3D;} {rwx}]  文件或目录，比如：chmod  u+w  1.txt</li>
+<li>chmod [mode&#x3D;421]  [file or dir]<ol>
+<li>u:user	g:group	o:other	a:all</li>
+<li>binary	r&#x3D;4,w&#x3D;2,x&#x3D;1  r+w+x&#x3D;7</li>
+<li>e.g	chmod 777 1.txt(ugo全部改为rwx)</li>
+<li>如果说是对目录，希望它嵌套递归的改变里面所有文件和目录都指定为这个权限，可以加-R</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>chown	改变所有者</li>
+<li>chown  选项  最终用户  文件或目录		改变文件或者目录的所有者</li>
+<li>-R	递归操作</li>
+<li>chgrp	改变所属组</li>
+<li>chgrp  最终用户组  文件或目录			该百年文件或目录的所属组</li>
+<li></li>
+</ol>
+<h3 id="文件属性"><a href="#文件属性" class="headerlink" title="文件属性"></a>文件属性</h3><p>Linux是一个典型的多用户系统，不同用户权限也不同，我们可以通过ll来查看<br><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696900862525-a676a2c3-74e6-4eed-ba2f-f0dd4aac623c.png#averageHue=%23f0f0f0&clientId=u3661de1c-05d3-4&from=paste&height=165&id=u7a0e2ba2&originHeight=247&originWidth=568&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=67349&status=done&style=none&taskId=ub42be274-ba47-4364-bd8a-7dae19207d0&title=&width=378.6666666666667" alt="image.png"></p>
+<ul>
+<li>0首位表示类型<ul>
+<li>-表示文件</li>
+<li>d表示目录</li>
+<li>l链接文档link file</li>
+</ul>
+</li>
+<li>1-3位	属主（文件所有者）拥有该用户的权限	——user</li>
+<li>4-6位	属组（所有者的同组用户）所有的权限	——group</li>
+<li>7-9位	其他用户对这个文件的权限			——other</li>
+</ul>
+<p>rwx对目录和文件的不同解释</p>
+<ul>
+<li>对文件<ul>
+<li>r表示可读</li>
+<li>w表示可写，但是不能代表可以删除，删除文件需要拥有对这个文件所在目录的可写权限</li>
+<li>x（execute）可以被系统执行</li>
+</ul>
+</li>
+<li>对目录<ul>
+<li>r表示可以读取。ls可查看</li>
+<li>w表示可以修改，在里面创建，删除，重命名之类的</li>
+<li>x可执行，表示可以进入这个目录</li>
+</ul>
+</li>
+</ul>
+<p>文件基本属性第二个是链接数</p>
+<ul>
+<li>如果是文件，表示的是硬链接</li>
+<li>如果是文件夹，则表示子文件夹个数</li>
+</ul>
+<h3 id="搜索查找类"><a href="#搜索查找类" class="headerlink" title="搜索查找类"></a>搜索查找类</h3><ol>
+<li>find		查找文件或目录<ol>
+<li>find  搜索范围  选项</li>
+<li>-name		按照指定文件名查找文件</li>
+<li>-user		查找属于指定用户名的所有文件</li>
+<li>-size		按照指定文件大小查找文件<ol>
+<li>b	块（512字节）</li>
+<li>c	字节</li>
+<li>w	字（2字节）</li>
+<li>k	千字节</li>
+<li>M	兆字节</li>
+<li>G	吉字节</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>locate	快速定位文件路径<ol>
+<li>locate指令利用事先建立的系统中有所有文件名称及路径的locate数据库实现快速定位，查询速度较快，无需遍历整个文件系统</li>
+<li>locate指令基于数据库进行查询，第一次运行前必须使用updatedb指令创建数据库</li>
+</ol>
+</li>
+<li>grep		过滤查找，以及管道符  |<ol>
+<li>grep  选项  查找内容  源文件</li>
+<li>-n  显示匹配行和行号</li>
+<li>管道符  |  ，表示把前一个命令的处理结果输出传递给后面的命令处理</li>
+</ol>
+</li>
+<li>wc		word count<ol>
+<li>wc  file		output: 行数  词数  字节数  文件名</li>
+</ol>
+</li>
+</ol>
+<h3 id="压缩解压类"><a href="#压缩解压类" class="headerlink" title="压缩解压类"></a>压缩解压类</h3><ol>
+<li>gzip&#x2F;gunzip	压缩&#x2F;解压<ol>
+<li>gzip	file		压缩文件，只能压缩为*.gz格式</li>
+<li>gunzip  file.gz		解压缩文件命令</li>
+<li>注意<ol>
+<li>只能压缩文件，不能压缩目录</li>
+<li>不保留源文件</li>
+<li>同时可以多个文件，会分别产生压缩包</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>zip&#x2F;unzip 压缩<ol>
+<li>zip  选项 xxx.zip  需要压缩的内容			 压缩文件和目录</li>
+<li>unzip  选项  xxx.zip						解压缩文件</li>
+<li>zip			-r	压缩目录</li>
+<li>unzip		-d	指定解压后文件的存放目录</li>
+<li>zip压缩命令在win和linux都通用，压缩完以后保留原文件</li>
+</ol>
+</li>
+<li>tar	打包<ol>
+<li>tar  选项 xxx.tar.gz  将要打包进去的内容		打包目录，压缩后的文件格式为.tar.gz</li>
+<li>-c	产生.tar打包文件</li>
+<li>-v	显示详细信息</li>
+<li>-f	指定压缩后的文件名</li>
+<li>-z	打包以后同时压缩</li>
+<li>-x	捷豹。tar我呢见</li>
+<li>-C	解压到指定目录</li>
+</ol>
+</li>
+</ol>
+<h5 id="打包和压缩。"><a href="#打包和压缩。" class="headerlink" title="打包和压缩。"></a>打包和压缩。</h5><p>打包是指将一大堆文件或目录什么的变成一个总的文件，压缩则是将一个大的文件通过一些压缩算法变成一个小文件。为什么要区分这 两个概念呢？其实这源于Linux中的很多压缩程序只能针对一个文件进行压缩，这样当你想要压缩一大堆文件时，你就得先借助另外的工具将这一大堆文件先打 成一个包，然后再就原来的压缩程序进行压缩。</p>
+<h3 id="磁盘管理类"><a href="#磁盘管理类" class="headerlink" title="磁盘管理类"></a>磁盘管理类</h3><h4 id="磁盘查看和分区类"><a href="#磁盘查看和分区类" class="headerlink" title="磁盘查看和分区类"></a>磁盘查看和分区类</h4><ol>
+<li>du		view the disk occupied by directories and files,du:disk usage<ol>
+<li>du  die&#x2F;file  path			displays the disk usage of each subdirunder the dir</li>
+<li>-h 		display itself in easy-to-read formats such as GBytes,MBytes,and KBytes</li>
+<li>-a 		view subdir sizes,including files</li>
+<li>-c 		displays all file and subdir sizes, as well as the sum size</li>
+<li>-s   		display sum size</li>
+<li>–max-depth&#x3D;n	指定统计子目录深度为n层</li>
+<li>tree		display files and dirs in a tree shape		<ol>
+<li>install tree command(yum install tree)</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>df 	disk free 		view free disk<ol>
+<li>df  选项		列出文件系统整体磁盘使用量，检查磁盘空间占用情况</li>
+<li>-h	和du一样</li>
+</ol>
+</li>
+<li>lsblk		查看设备挂载情况	ls block<ol>
+<li>-f	查看详细的设备挂载情况，显示文件系统信息</li>
+<li>MOUNTPOINT	挂载点</li>
+<li>sda，hda，vda这是硬盘的类型<ol>
+<li>IDE	则是hd，a表示第一块，hdb就是第二块，后面接数字，hda1就表示第一块硬盘的第一个分区</li>
+<li>SATA&#x2F;SCSI  就是sda<ol>
+<li>SCSI（Small Computer System Interface），小型计算机系统接口，是一种计算机与外部设备之间的接口标准。</li>
+<li>ATA（Advanced Technology Attachment），高技术配置，一般来说，ATA是一种控制器技术，而IDE（Integrated Drive Electronics）是一个匹配它的磁盘驱动器技术，ATA和IDE通常可以互换使用。<ol>
+<li>SATA（Serial ATA）口的硬盘又叫串口硬盘. SATA以它串行的数据发送方式得名。</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>vda<ol>
+<li>VDA是Virtual Disk Adapter的缩写，意为虚拟磁盘适配器。VDA是一种Linux内核的驱动程序，它在虚拟环境中提供了与实体硬件磁盘交互的方式。如果我们在虚拟机中添加了新的硬盘，那么这个硬盘就会被创建为一个虚拟磁盘，并由VDA驱动来进行管理和操作。也就是说，VDA驱动程序是Linux系统中的一种设备驱动，用于支持虚拟磁盘。</li>
+</ol>
+</li>
+<li><a target="_blank" rel="noopener" href="https://www.dbs724.com/339634.html">https://www.dbs724.com/339634.html</a></li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696942217782-c4fbcc6f-7cc4-4dbe-a8cb-38505cff382b.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=213&id=u2234023b&originHeight=319&originWidth=665&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=47149&status=done&style=none&taskId=uae08d5c7-b742-414a-a5c8-b1822c5124e&title=&width=443.3333333333333" alt="image.png"></li>
+<li>后面这一串是系统为他们创建的唯一的uuid</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>mount&#x2F;umount	挂在&#x2F;卸载<ol>
+<li>mount [-t vfstype] [-o options] device dir	挂载设备</li>
+<li>umount 设备文件名或挂载点				卸载设备</li>
+<li>-t  vfstype	指定文件的类型，一般是不用的，因为mount会自动选择正确的类</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696945123497-cf7a84af-962d-42ce-88f4-c5dd972cee22.png#averageHue=%23fafaf9&clientId=u3661de1c-05d3-4&from=paste&height=338&id=uf3ec86bf&originHeight=507&originWidth=739&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=85372&status=done&style=none&taskId=u6320b262-ee1f-4697-b730-504213158fe&title=&width=492.6666666666667" alt="image.png"></li>
+</ol>
+</li>
+<li>fdisk	分区<ol>
+<li>fdisk  -l		查看磁盘分区详情</li>
+<li>fdisk  硬盘设备名		对新增硬盘进行分区操作</li>
+<li>-l		显示所有硬盘的分区操作</li>
+<li>只能root用户使用</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696946093007-6d204989-d664-4993-be9e-ff0587398007.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=232&id=u132fb28a&originHeight=348&originWidth=723&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=58964&status=done&style=none&taskId=uc6f56a37-5c3b-4166-8b5f-2df1682daa1&title=&width=482" alt="image.png"></li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696946114603-afb9e2f6-49b8-41ce-8ca5-c1093fb5ca11.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=375&id=uab86cace&originHeight=562&originWidth=561&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=71943&status=done&style=none&taskId=uf68e28c3-4d68-4e94-b29a-f440dd195ea&title=&width=374" alt="image.png"></li>
+<li>n划分分区，最多4个主分区（primary），如果还需要划分，拿一个主分区做拓展分区，分区数最多为16</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696946336875-331bbd31-4b01-460e-94a2-779b7a8e20be.png#averageHue=%23fefefe&clientId=u3661de1c-05d3-4&from=paste&height=162&id=ue283b9e5&originHeight=243&originWidth=663&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=35276&status=done&style=none&taskId=u4565e23d-01f8-4dab-ab80-3668613410c&title=&width=442" alt="image.png"></li>
+<li>mkfs	make file system	-t，指定文件系统类型</li>
+</ol>
+</li>
+</ol>
+<h3 id="进程管理类"><a href="#进程管理类" class="headerlink" title="进程管理类"></a>进程管理类</h3><ol>
+<li>ps		process  status	查看当前系统进程状态（只显示当前用户的，与当前用户相关的）<ol>
+<li>ps aux | grep xxx		查看系统中所有进程<ol>
+<li>显示信息说明</li>
+<li>PID：进程的ID号</li>
+<li>%CPU：该进程占用的CPU资源百分比</li>
+<li>%MEM：该进程占用的物理内存的百分比</li>
+<li>VSZ：该进程占用的虚拟内存的大小，单位KB</li>
+<li>RSS：该进程占用的实际物理内存大小，单位KB</li>
+<li>该进程是在哪个终端中运行的<ol>
+<li>在CentOS中，tty1是图形化终端</li>
+<li>tty2-tty6是本地的字符界面终端</li>
+<li>pts&#x2F;0-255代表虚拟终端</li>
+</ol>
+</li>
+<li>STAT：进程状态<ol>
+<li>R:运行状态</li>
+<li>S:睡眠状态</li>
+<li>T:暂停状态</li>
+<li>Z：僵尸状态</li>
+<li>s：包含子进程</li>
+<li>l：多线程</li>
+<li>+：前台显示</li>
+<li>&lt;&#x2F;N:较高&#x2F;较低优先级</li>
+</ol>
+</li>
+<li>START	启动时间</li>
+<li>TIME	占用CPU的运算时间</li>
+<li>COMMAND	产生此进程的命令名</li>
+</ol>
+</li>
+<li>ps -ef | grep xxx		查看父子进程之间的关系<ol>
+<li>UID		用户</li>
+<li>PPID	父进程		0号进程idle</li>
+<li>C		CPU用于计算执行优先级的因子<ol>
+<li>数值高表示为CPU密集型运算，执行优先级降低</li>
+<li>数值小表示为I&#x2F;O密集型运算，执行优先级提高</li>
+</ol>
+</li>
+<li>STIME	进程启动时间</li>
+</ol>
+</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696985457756-a565d715-232e-41a9-a150-a33086b346c0.png#averageHue=%23e9e8ea&clientId=u3661de1c-05d3-4&from=paste&height=114&id=ufbdc1b33&originHeight=171&originWidth=470&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=65380&status=done&style=none&taskId=u3f9f0f99-0ab8-4fc0-9774-168333c25ef&title=&width=313.3333333333333" alt="image.png"></li>
+</ol>
+</li>
+<li>kill	终止进程<ol>
+<li>kill  选项  进程号		通过进程号杀死进程</li>
+<li>killall  进程名字		通过进程名称杀死进程，支持通配符</li>
+<li>kill -l	列出一些选项操作</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696987581488-b7471d6b-50a8-4dd2-9c43-ac12502e6c7c.png#averageHue=%23242424&clientId=u3661de1c-05d3-4&from=paste&height=297&id=u66d4dec5&originHeight=446&originWidth=1157&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=70176&status=done&style=none&taskId=u96fbc755-0b7b-4cae-aab4-2ec00d50698&title=&width=771.3333333333334" alt="image.png"></li>
+<li>-9 		表示强迫进程立即停止</li>
+</ol>
+</li>
+<li>pstree		查看进程树<ol>
+<li>pstree  选项<ol>
+<li>-p  		显示进程的PID</li>
+<li>-u  		显示进程所属用户</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>top			实时监控系统进程状态<ol>
+<li>top  选项<ol>
+<li>-d  秒数	指定top命令几秒更新一次，默认3s</li>
+<li>-i		使top不显示任何闲置或僵死进程</li>
+<li>-p		通过PID来监控某个进程的状态</li>
+</ol>
+</li>
+<li>对top显示信息操作<ol>
+<li>P		以CPU使用率排序</li>
+<li>M		以内存使用率排序</li>
+<li>N		以PID排序</li>
+<li>q		退出top</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>netstat		下面睡觉哦网络状态和端口占用信息<ol>
+<li>netstat -anp | grep  进程号		查看该进程网络信息</li>
+<li>netstat -nlp | grep 端口号		查看网络端口号占用信息<ol>
+<li>-a	显示所有在监听和未监听的套接字</li>
+<li>-n	拒绝显示别名，能显示数字的全部转换为数字</li>
+<li>-l	仅列出在监听的服务状态</li>
+<li>-p	表示显示哪个进程正在调用</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="系统定时"><a href="#系统定时" class="headerlink" title="系统定时"></a>系统定时</h3><ol>
+<li>crontab	系统定时任务		cron table时间表<ol>
+<li>crontab  选项<ol>
+<li>-e  		编辑crontab定时任务</li>
+<li>-l		查询crontab任务</li>
+<li>-r		删除当前用户所有的crontab任务</li>
+</ol>
+</li>
+<li>进图crontab编辑界面，会打开vim编辑工作<ol>
+<li>*****  执行的任务</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696993363115-53a8708e-6864-4776-82d8-d13752ad6ef2.png#averageHue=%23f3f3f3&clientId=u29adce17-3961-4&from=paste&height=199&id=u91fd33fb&originHeight=299&originWidth=596&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=69491&status=done&style=none&taskId=u2f6d2dd5-aa75-4834-9060-bc2129fa539&title=&width=397.3333333333333" alt="image.png"></li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696993420744-d3fcceb3-93f2-4e1e-9aa8-0448094a4e2c.png#averageHue=%23f2f2f2&clientId=u29adce17-3961-4&from=paste&height=221&id=u0c1e5c28&originHeight=332&originWidth=607&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=103893&status=done&style=none&taskId=uff108539-ca5a-4395-80c6-72a6e18cc32&title=&width=404.6666666666667" alt="image.png"></li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1696993574934-2f86d773-fb5c-48c8-b721-e8611183d16c.png#averageHue=%23f0f0f0&clientId=u29adce17-3961-4&from=paste&height=225&id=u9fca5d92&originHeight=338&originWidth=608&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=117548&status=done&style=none&taskId=u6ab19e59-ab1f-48a9-b3d8-0dd43187fe2&title=&width=405.3333333333333" alt="image.png"></li>
+<li>注意，*&#x2F;10 4 ***表示从每天四点开始，每隔10min执行一次</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>	</p>
+<h3 id="软件包管理"><a href="#软件包管理" class="headerlink" title="软件包管理"></a>软件包管理</h3><h4 id="RPM"><a href="#RPM" class="headerlink" title="RPM"></a>RPM</h4><h5 id="RPM属性"><a href="#RPM属性" class="headerlink" title="RPM属性"></a>RPM属性</h5><p>RPM（Redhat Package Manager）,RedHat软件包管理工具，类似windows的setup.exe。使linux系列的打包安装工具</p>
+<h5 id="RPM名称格式"><a href="#RPM名称格式" class="headerlink" title="RPM名称格式"></a>RPM名称格式</h5><p>a-b-c.rpm</p>
+<ul>
+<li>a: 软件名称</li>
+<li>b: 软件版本号，主版本和此版本</li>
+<li>c：软件运行的硬件平台，i386，x86等等</li>
+<li>.rpm		文件拓展名，表示rpm包</li>
+</ul>
+<h5 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h5><ol>
+<li>rpm -qa		查询安装的所有rpm软件包<ol>
+<li>软件包较多，一般会使用过滤</li>
+</ol>
+</li>
+<li>rpm -e  RPM软件安装包<ol>
+<li>-e	卸载软件包</li>
+<li>–nodeps		卸载软件时不检查依赖（有些软件是需要依赖其他软件的，卸载底层软件包的话，会对其他软件使用造成影响，可以通过这个命令）</li>
+</ol>
+</li>
+<li>rpm	-ivh RPM包全名（a-b-c.rpm）<ol>
+<li>-i	install安装</li>
+<li>-v	–verbose  	显示详细信息</li>
+<li>-h	–hash		进度条</li>
+<li>–nodeps		安装前不检查依赖</li>
+</ol>
+</li>
+</ol>
+<h4 id="YUM"><a href="#YUM" class="headerlink" title="YUM"></a>YUM</h4><h5 id="YUM概述"><a href="#YUM概述" class="headerlink" title="YUM概述"></a>YUM概述</h5><p>YUM，Yellow dog Updater,Modified,是一个Shell前端软件包管理器，基于RPM包管理，能从指定的服务器自动下载RPM包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软件包</p>
+<h5 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h5><ol>
+<li>yum  选项  参数<ol>
+<li>-y	对所有提问都回答yes</li>
+<li>install	安装rpm软件包</li>
+<li>update	更新rpm软件包</li>
+<li>check-update		检查是否有可用的更新rpm软件包</li>
+<li>remove	删除指定的rpm软件包</li>
+<li>list		显示软件包信息</li>
+<li>clean	行李yum过期的缓存</li>
+<li>deplist	显示yum软件包的所有依赖关系</li>
+</ol>
+</li>
+<li>默认系统YUM源需要连接国外apache网站，网速较慢，可以修改为镜像网站<ol>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697095327767-5fb6cda5-1dec-4760-8205-9e5a1e815a18.png#averageHue=%23dddddd&clientId=u29adce17-3961-4&from=paste&height=144&id=u183891e1&originHeight=216&originWidth=528&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=97906&status=done&style=none&taskId=ua2feafb9-3a3f-4a86-8f62-5ed94b8c3b7&title=&width=352" alt="image.png"></li>
+</ol>
+</li>
+</ol>
+<h3 id="克隆虚拟机"><a href="#克隆虚拟机" class="headerlink" title="克隆虚拟机"></a>克隆虚拟机</h3><h4 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h4><ol>
+<li>在vm管理里面直接克隆，</li>
+<li>然后登录，和原本一样，账号密码这些的也是一起被克隆的</li>
+<li>修改网络地址，ping了一下，没问题</li>
+<li>修改主机名</li>
+<li><img src="https://cdn.nlark.com/yuque/0/2023/png/32640305/1697101046964-0f430576-2b2c-4366-9d55-e742743917e4.png#averageHue=%23fefefe&clientId=ub430d930-9a42-4&from=paste&height=103&id=u1aa1597a&originHeight=154&originWidth=668&originalType=binary&ratio=1.5&rotation=0&showTitle=false&size=26602&status=done&style=none&taskId=ub47ea28d-a45c-410b-a67f-d4d54fc4996&title=&width=445.3333333333333" alt="image.png"></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/03/28/linux/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cluc2gj2q000cac6zc1qu70gz" data-title="Linux常用命令" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/03/28/linux/Linux%E4%B9%8Bshell%E7%BC%96%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          Linux之shell编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/03/28/python/PythonStudy/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">pythonStudy</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/03/">March 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/03/29/linux/%E5%8F%91%E9%80%81%E6%B6%88%E6%81%AF/">发送消息</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/29/linux/%E6%8C%89%E6%97%B6%E5%BD%92%E6%A1%A3%E6%96%87%E4%BB%B6/">安置归档文件</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/28/JavaScript/JavaScriptStudy/">JavaScriptStudy</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/28/linux/Linux%E6%A6%82%E8%BF%B0/">Linux概述</a>
+          </li>
+        
+          <li>
+            <a href="/2024/03/28/linux/Linux%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">Linux基本操作</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 XiaoLi<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
